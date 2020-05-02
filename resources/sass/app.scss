@@ -1,0 +1,35 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// for print ===> custom...
+@media print {
+    // .nav.nav-tabs li:not(.active){
+    //     display: none;
+    // }
+    // .invoice{
+    // 	padding: 10px 20px;
+    // }
+
+    // .invoice{
+	// 	background-position: center center;
+	// 	background-repeat: no-repeat;
+
+	// }
+	// .table-responsive table{
+	// 	background-color: transparent !important;
+	// }
+
+    .no-print {
+        display: none;
+    }
+}
+
+@page {
+    margin: 0;
+}
