@@ -1,0 +1,119 @@
+- system requirement
+  windows 10, ssd 250GB,(virtual machine, Linux ubuntu, web server nginx),latest high level
+  all computers that use Larasmt must be connected within same router
+  chrome browser
+
+- How do I set a static IP address in Windows?
+  https://kb.netgear.com/27476/How-do-I-set-a-static-IP-address-in-Windows
+     Click Start Menu > Control Panel > Network and Sharing Center or Network and Internet > Network and Sharing Center.
+     Click Change adapter settings.
+     Right-click on Wi-Fi or Local Area Connection.
+    Click Properties.
+    Select Internet Protocol Version 4 (TCP/IPv4).
+    Click Properties.
+    Select Use the following IP address.
+    Enter the IP address, Subnet mask, Default gateway, and DNS server.
+    Click OK.
+
+- How to change default MySQL password in Homestead
+  https://laracasts.com/discuss/channels/laravel/how-to-change-default-mysql-password-in-homestead
+    Adding the following line in Vagrantfile in the bottom of the ==> c:\Users\Kwon\Homestead\Vagrantfile
+    Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+       <other stuff 0>
+       ...
+      <other stuff N>
+      config.vm.provision "shell",
+            inline: "mysqladmin -uroot -psecret password root"
+      end
+
+- How to Backup and Restore all Databases in Laravel Homestead
+  https://slick.pl/kb/laravel/how-to-backup-and-restore-all-databases-in-laravel-homestead/
+    Open Terminal and ssh to your Homestead box.
+    Next cd to the folder you mapped in the YAML file.
+    In my case it was a directory Code.(ubuntu => cd Code)
+    it lives in my home directory.(example => vagrant@homestead:~/Code$)
+    mysqldump -u homestead -psecret --all-databases > 2018_02_27_all_db_backup.sql  ==> give your date
+    The backup file will land on your local drive obviously. (C\Users\Kwon\PhpCode\2018_02_27_all_db_backup.sql)
+    To restore all databases in new Homestead box, simply ssh into it and type:(ubuntu => cd Code)
+     mysql -u homestead -psecret < 2018_02_27_all_db_backup.sql
+
+- install
+    go ubuntu => cd Code
+    composer create-project --prefer-dist laravel/laravel larasmt
+    cd larasmt
+    composer require laravel/ui
+    php artisan ui vue --auth
+    yarn install --no-bin-links
+    yarn add bootstrap jquery popper.js vue vue-router --save(????)
+
+- .env setup
+   database, mailtrap...
+
+-  register 후에 email verification 만들기(기본적으로 built in 되어 있는 기능)
+   https://www.youtube.com/watch?v=ivYxiCPjpqc
+     User.php(model)  ->  class User extends Authenticatable  "implements MustVerifyEmail"를 추가
+     wep.php  ->  Auth::routes(['verify' => true]);  ->  ()안에 "(['verify' => true]"을 추가
+                   ->  Route::get('profile', function () {
+                                 return "This is profile";
+                        })->middleware('verified');   추가(시험용:verify가 않된 상태에서 profile로 가면 "This is profile"; 가
+                        않나오고 verify.blade.php page로 돌아 간다.
+    RegisterController 수정하였다.
+
+- many to many relationship ==> 이 부분은 보류...
+   https://www.youtube.com/watch?v=kbRW-0yPY8Y&list=PLe30vg_FG4OQz1yZq0z19ZuWD_C3MZbA4&index=10
+   php artisan make:migration create_feeder_part_table --create=feeder_part
+   php artisan migrate
+
+- config/app.php
+    https://www.qcode.in/managing-users-timezone-in-laravel-app/
+    timezone' => 'Pacific/Auckland',
+
+- config/session.php
+    'lifetime' => env('SESSION_LIFETIME', 60),
+    'expire_on_close' => true,
+
+-  ACL 사용하기(laravel의 gate를 기반으로)
+    https://www.youtube.com/watch?v=viX260pOmVE&list=PLB4AdipoHpxaHDLIaMdtro1eXnQtl_UvE&index=42 ==> Code inspire
+    laravel.com => security/authorization/Gate 참조
+    laravel.com => security/authorization/Authorization Actions Using Polices/Via Contoller Helper 참조
+    User.php, migration file  에 role column 추가,
+    app/providers/AuthServiceProvider.php
+      Gate::define('isAdmin', function ($user) { ////
+              return $user->role === 'admin';
+          });
+          Gate::define('isAuthor', function ($user) { ////
+              return $user->role === 'author';
+          });
+          Gate::define('isUser', function ($user) { ////
+              return $user->role === 'user';
+          });
+         Gate::define('isAdminOrEditor', function($user){
+                if ($user->role === 'admin' || $user->role === 'editor'){
+                    return true;
+               }
+          });
+    views/layouts/app.balde.php의 해당 menu에 @can('isAdmin') -------@endcan을 설정한다.
+    @canany(['isAdmin','isEditor']) ------@endcanany ==> app.blade.php에  multiple로 줄수 있다.
+    @cannot('isAdmin')------@endcannot ==> app.blade.php
+    원하는 Controller function에 authorize 추가(laravel7.test 참조 ==> TaskController addTask function에 추가 했음) => ACL 적용
+    routes/web.php 추가 ==>  middleware('can:isAdmin') or middleware('can:isAdminOrEditor')
+
+- for print out ( <a href="#" @click.prevent="printme" target="_blank" class="btn btn-success"><i class="fa fa-print"></i> Print</a> )
+    resources/js/app.js ==> added below
+    methods: {
+        printme() { //필요한 페이지에서 a tag를 추가하여 사용 한다.
+            window.print();
+        }
+    }
+
+- created_at date format 편집하기(momentjs)
+    https://www.youtube.com/watch?v=bV9YsIi-FUU&list=PLB4AdipoHpxaHDLIaMdtro1eXnQtl_UvE&index=16
+    https://momentjs.com/
+    yarn add moment
+    resources/js/app.js ==> add below
+      import moment from 'moment';
+      Vue.filter('myDate',function(created){
+	return moment(created).format('DD-MM-YYYY, H:mm:ss');
+      });
+      add below in vue component
+        <td>{{user.created_at | myDate}}</td>
