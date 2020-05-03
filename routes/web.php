@@ -88,3 +88,5 @@ Route::get('/showProductForm', 'CreateController@showProductForm')->name('create
 Route::get('/get-products', 'CreateController@getProducts')->middleware('can:isAdmin');
 Route::post('/create-product', 'CreateController@createProduct')->middleware('can:isAdmin');
 Route::post('/delete-product', 'CreateController@deleteProduct')->middleware('can:isAdmin');
+// logs
+Route::get('/logs','LogController@show')->name('logs')->middleware('can:isAdmin');

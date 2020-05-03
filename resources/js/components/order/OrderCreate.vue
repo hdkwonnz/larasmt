@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-12">
                 <h4>
-                    Create Order
+                    Publish Order
                 </h4>
             </div>
         </div>

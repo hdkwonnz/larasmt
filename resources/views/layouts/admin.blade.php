@@ -59,6 +59,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('user.index') }}">UserProfile</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('logs') }}">SystemLogs</a>
+                        </li>
                         @endcan <!-- end for ACL admin or editor -->
                     </ul>
 

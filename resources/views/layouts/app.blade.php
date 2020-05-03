@@ -66,7 +66,7 @@
                         @endcan
                         @can('isEditor')<!-- for ACL editor -->
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('form.order') }}">CreateOrder</a>
+                            <a class="nav-link" href="{{ route('form.order') }}">PublishOrder</a>
                         </li>
                         @endcan<!-- end for ACL editor -->
                         @cannot(['isAdmin'])
