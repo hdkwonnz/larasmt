@@ -2996,7 +2996,7 @@ __webpack_require__.r(__webpack_exports__);
         axios.post('/delete-feeder', {
           feederId: feederId
         }).then(function (response) {
-          console.log(response);
+          //console.log(response);
           _this.successMsg = "";
           _this.errorMsg = "";
           _this.successMsg = response.data.successMsg;
@@ -3021,7 +3021,7 @@ __webpack_require__.r(__webpack_exports__);
           productId: this.productId
         }
       }).then(function (response) {
-        console.log(response);
+        //console.log(response);
         _this2.parts = response.data.parts;
 
         if (_this2.parts) {
@@ -3042,7 +3042,7 @@ __webpack_require__.r(__webpack_exports__);
         machineId: this.machineId,
         departmentId: this.departmentId
       }).then(function (response) {
-        console.log(response);
+        //console.log(response);
         _this3.errorMsg = response.data.errorMsg;
 
         if (!_this3.errorMsg) {
@@ -3072,7 +3072,7 @@ __webpack_require__.r(__webpack_exports__);
         partNumber: this.partNumber,
         feederPosition: this.feederPosition
       }).then(function (response) {
-        console.log(response);
+        //console.log(response);
         _this4.noPartSw = response.data.noPartSw;
 
         if (_this4.noPartSw == true) {
@@ -3104,8 +3104,7 @@ __webpack_require__.r(__webpack_exports__);
         partValue: this.partValue,
         partDescription: this.partDescription
       }).then(function (response) {
-        console.log(response);
-
+        //console.log(response);
         if (response.data == "good") {
           $('.message').html(""); //clear field
 
@@ -58095,7 +58094,7 @@ var render = function() {
                 [_vm._v("Feeder #")]
               ),
               _vm._v(" "),
-              _c("div", { staticClass: "col-md-1" }, [
+              _c("div", { staticClass: "col-md-2" }, [
                 _c("input", {
                   directives: [
                     {
@@ -58891,7 +58890,7 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(order.shift_name))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v("AuthorName")]),
+                    _c("td", [_vm._v(_vm._s(order.author))]),
                     _vm._v(" "),
                     _c("td", [
                       _vm._v(_vm._s(_vm._f("myDate")(order.created_at)))

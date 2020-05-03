@@ -33,7 +33,7 @@ Route::get('/', function () {
 });
 Route::get('/home', 'HomeController@index')->name('home');
 // Admin
-Route::get('/admin', 'AdminController@index')->name('admin.home')->middleware('can:isAdmin');
+Route::get('/admin', 'AdminController@index')->name('admin.home')->middleware('auth','can:isAdmin');
 // User
 Route::get('/user-index', 'UserController@index')->name('user.index')->middleware('can:isAdmin');
 Route::get('/get-users', 'UserController@getUsers')->middleware('can:isAdmin');

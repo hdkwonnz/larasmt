@@ -57,7 +57,7 @@
         <form v-if="feederSw" @submit.prevent="createFeeder()" class="mt-3">
             <div class="form-group row">
                 <label for="Feeder #" class="col-md-1 col-form-label">Feeder #</label>
-                <div class="col-md-1">
+                <div class="col-md-2">
                     <input type="number" name="feederNumber" v-model="feederNumber" class="form-control" min="1" max="300" required>
                 </div>
                 <label for="Part #" class="col-md-1 col-form-label">Part #</label>
@@ -221,7 +221,7 @@
                         feederId: feederId,
                     })
                     .then(response => {
-                        console.log(response);
+                        //console.log(response);
                         this.successMsg = "";
                         this.errorMsg = "";
                         this.successMsg = response.data.successMsg;
@@ -244,7 +244,7 @@
                     params: {productId: this.productId}
                 })
                 .then(response => {
-                    console.log(response);
+                    //console.log(response);
                     this.parts = response.data.parts;
                     if (this.parts){
                         $('.show_feeders').addClass('show_scroll_bar');
@@ -264,7 +264,7 @@
                     departmentId: this.departmentId
                 })
                 .then(response => {
-                    console.log(response);
+                    //console.log(response);
                     this.errorMsg = response.data.errorMsg;
                     if (!this.errorMsg){
                         //this.parts = response.data.parts;
@@ -293,7 +293,7 @@
                     feederPosition: this.feederPosition,
                 })
                 .then(response => {
-                    console.log(response);
+                    //console.log(response);
                     this.noPartSw = response.data.noPartSw;
                     if (this.noPartSw == true){
                         this.ownPartNumber = this.partNumber;
@@ -322,7 +322,7 @@
                     partDescription: this.partDescription
                 })
                 .then(response => {
-                    console.log(response);
+                    //console.log(response);
                     if (response.data == "good"){
                         $('.message').html("");//clear field
                         $('.error').html("");//clear field

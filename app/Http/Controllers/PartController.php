@@ -136,6 +136,9 @@ class PartController extends Controller
             $orderFeeder = Orderfeeder::where('order_number', '=',$orderNumber)
                             ->first();
         }
+        if (!$orderFeeder){
+            return back()->with('error','sorry! no order-feeder list at this point.');
+        }
 
         if ((isset($_GET['orderId'])) && (isset($_GET['orderNumber']))){
             $orderId = $_GET['orderId'];
@@ -143,6 +146,9 @@ class PartController extends Controller
             $orderFeeder = Orderfeeder::where('id', '=',$orderId)
                             ->where('order_number', '=',$orderNumber)
                             ->first();
+        }
+        if (!$orderFeeder){
+            return back()->with('error','sorry! no order-feeder list at this point.');
         }
 
         $previous = Orderfeeder::where('id', '<', $orderFeeder->id)

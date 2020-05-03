@@ -39,7 +39,7 @@
                 {{-- <a href="{{ route('part.refill', $feeder) }}" class="btn btn-primary">{{ $feeder->feeder_number }}</a> --}}
                 {{-- <span class="btn btn-primary">{{ $feeder->feeder_number }}</span> --}}
                 <span class="display-5"><strong>{{ $feeder->feeder_number }}</strong></span>
-            <span class="text-danger">:{{ $part->position }}</span>
+            <span class="text-danger">:{{ $feeder->position }}</span>
             </div>
             <div class="col-md-3">
                 {{ $part->own_partnumber }}
@@ -58,6 +58,7 @@
     @endforeach
 
     <!-- this row will not appear when printing -->
+    <!-- printme function is defined on resources/js/app.js-->
     <div class="row mt-3 no-print">
         <div class="col-xs-12">
           <a href="#" @click.prevent="printme" target="_blank" class="btn btn-success"><i class="fa fa-print"></i> Print</a>

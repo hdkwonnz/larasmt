@@ -74,7 +74,7 @@
                                 <td>{{ order.product_name}}</td>
                                 <td>{{ order.department_name  }}</td>
                                 <td>{{ order.shift_name }}</td>
-                                <td>AuthorName</td>
+                                <td>{{ order.author }}</td>
                                 <td>{{ order.created_at | myDate}}</td>
                                 <td class="text-center">
                                     <a href="javascript:void(0)" @click="showOrderModal(order.id,order.order_number,order.status,order.department_id)">

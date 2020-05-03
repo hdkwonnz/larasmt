@@ -128,8 +128,8 @@ class OrderController extends Controller
                 'department_name' => $department->name,
                 'shiftwork_id' => $request->shiftId,
                 'shift_name' => $shift->name,
-                // 'user_id' => auth()->user()->id,
-                // 'author' => auth()->user()->name(),
+                'user_id' => auth()->user()->id,
+                'author' => auth()->user()->name,
                 'status' => 'waiting'
             ]);
             foreach($products as $product) {
@@ -191,11 +191,11 @@ class OrderController extends Controller
 
         $order = Order::Find($request->orderId);
 
-        // if ($order->user_id != auth()->user()->id){
-        //     return response()->json([
-        //         'errorMsg' => 'This user is not same as original author.',
-        //     ]);
-        // }
+        if ($order->user_id != auth()->user()->id){
+            return response()->json([
+                'errorMsg' => 'This user is not same as original author.',
+            ]);
+        }
 
         if ($order->status == 'active'){
             return response()->json([
@@ -209,10 +209,10 @@ class OrderController extends Controller
 
             $order->delete();
 
-            Ordermachine::where('order_id','=','$request->orderId')
+            Ordermachine::where('order_id','=', $request->orderId)
                         ->delete();
 
-            Orderfeeder::where('order_id','=','$request->orderId')
+            Orderfeeder::where('order_id','=', $request->orderId)
                         ->delete();
 
             DB::commit();

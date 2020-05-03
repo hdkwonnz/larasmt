@@ -44,7 +44,7 @@
         </div>
     </div>
         @php
-            $orderFeeders = App\OrderFeeder::where('order_number','=',$orderMerchine->order_number)
+            $orderFeeders = App\Orderfeeder::where('order_number','=',$orderMerchine->order_number)
                 ->where('machine_id','=',$orderMerchine->machine_id)
                 ->orderBy('feeder_number','asc')
                 ->get();

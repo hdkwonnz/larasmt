@@ -29,6 +29,7 @@ class CreateOrderfeedersTable extends Migration
             $table->string('value');
             $table->unsignedInteger('feeder_number');
             $table->string('position');
+            $table->string('author');
             $table->timestamps();
         });
     }
