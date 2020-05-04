@@ -3666,6 +3666,8 @@ __webpack_require__.r(__webpack_exports__);
           _this3.vendorPartNumber = "";
           _this3.partValue = "";
           _this3.partDescription = "";
+
+          _this3.getParts();
         }
       })["catch"](function (error) {
         //console.log(error);

@@ -160,6 +160,7 @@
                         this.vendorPartNumber = "";
                         this.partValue = "";
                         this.partDescription = "";
+                        this.getParts();
                     }
                 })
                 .catch(error => {
