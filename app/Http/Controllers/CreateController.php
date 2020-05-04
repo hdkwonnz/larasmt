@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Feeder;
 use App\Machine;
 use App\Product;
 use App\Shiftwork;
@@ -97,6 +98,14 @@ class CreateController extends Controller
             'machineId' => 'required|numeric',
         ]);
 
+        $products = Product::where('machine_id','=',$request->machineId)
+                        ->get();
+        if ($products){
+            return response()->json([
+                'errorMsg' => 'this machine has child product.',
+            ]);
+        }
+
         $machine = Machine::Find($request->machineId);
 
         $machine->delete();
@@ -114,6 +123,14 @@ class CreateController extends Controller
         $request->validate([
             'departmentId' => 'required|numeric',
         ]);
+
+        $products = Product::where('department_id','=',$request->departmentId)
+                        ->get();
+        if ($products){
+            return response()->json([
+                'errorMsg' => 'this department has child product.',
+            ]);
+        }
 
         $department = Department::Find($request->departmentId);
 
@@ -151,6 +168,14 @@ class CreateController extends Controller
             'productnameId' => 'required|numeric',
         ]);
 
+        $products = Product::where('productname_id','=',$request->productnameId)
+                        ->get();
+        if ($products){
+            return response()->json([
+                'errorMsg' => 'this productname has child product.',
+            ]);
+        }
+
         $productname = Productname::Find($request->productnameId);
 
         $productname->delete();
@@ -168,6 +193,14 @@ class CreateController extends Controller
         $request->validate([
             'productId' => 'required|numeric',
         ]);
+
+        $feeders = Feeder::where('product_id','=',$request->productId)
+                        ->get();
+        if ($feeders){
+            return response()->json([
+                'errorMsg' => 'this product has child feeder.',
+            ]);
+        }
 
         $product = Product::Find($request->productId);
 
