@@ -38,6 +38,14 @@ class PartController extends Controller
             'partId' => 'required|numeric',
         ]);
 
+        $feeders = Feeder::where('part_id','=',$request->partId)
+                        ->get();
+        if ($feeders){
+            return response()->json([
+                'errorMsg' => 'this part has child feeder.',
+            ]);
+        }
+
         $part = Part::Find($request->partId);
 
         $part->delete();
