@@ -75,7 +75,7 @@ class PartController extends Controller
             ]);
         }
 
-        $part = Part::where('vendor_partnumber ','=',$request->vendorPartNumber)
+        $part = Part::where('vendor_partnumber','=',$request->vendorPartNumber)
                         ->first();
         if ($part){
             return response()->json([
