@@ -68,6 +68,9 @@
     https://www.qcode.in/managing-users-timezone-in-laravel-app/
     timezone' => 'Pacific/Auckland',
 
+-config/auth.php
+   changed to 'password_timeout' => 1800, ////for 30 minutes for Password Confirmation Timeout
+
 - config/session.php
     'lifetime' => env('SESSION_LIFETIME', 60),
     'expire_on_close' => true,

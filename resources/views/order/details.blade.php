@@ -52,7 +52,7 @@
         @foreach ($orderFeeders as $feeder)
         <div class="row">
             <!-- transfer data to modal by jquery=> call doRefill-->
-            <div class="col-md-1 w-100">
+            <div class="col-md-2 w-100">
                 <button type="button" class="btn btn-primary"
                     onclick="doRefill({{ $feeder->id }},{{ $feeder->feeder_number }},'{{ $feeder->position }}','{{ $orderMerchine->machine_name }}','{{ $feeder->own_partnumber }}')">
                     {{ $feeder->feeder_number }}
@@ -66,11 +66,11 @@
                 {{ $feeder->vendor_partnumber }}
             </div>
             <div class="col-md-3">
-                {{ $feeder->description }}
-            </div>
-            <div class="col-md-2">
                 {{ $feeder->value }}
             </div>
+            {{-- <div class="col-md-1">
+                {{ $feeder->description }}
+            </div> --}}
         </div>
         @endforeach
     @endforeach

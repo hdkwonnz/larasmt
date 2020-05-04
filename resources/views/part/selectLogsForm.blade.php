@@ -14,7 +14,7 @@
         @csrf
         <div class="form-group row">
             <label for="orderNmber" class="col-md-2 col-form-label">Order Numbers</label>
-            <div class="col-md-10">
+            <div class="col-md-6">
                 <select name="orderId" id="orderId" required class="form-control dropdown-style input-field input-normal">
                     @foreach ($orders as $order)
                         <option value="{{ $order->id}}" >{{ $order->order_number }} - {{ $order->product_name }} - {{ $order->department_name }} - {{ $order->shift_name }}</option>

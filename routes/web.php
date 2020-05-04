@@ -59,8 +59,8 @@ Route::get('/create-part', 'PartController@createPartForm')->name('create.partFo
 Route::get('/get-parts', 'PartController@getParts')->middleware('can:isAdmin');
 Route::post('/delete-part', 'PartController@deletePart')->middleware('can:isAdmin');
 // Order
-Route::get('/make-order', 'OrderController@showForm')->name('form.order')->middleware('can:isEditor');
-Route::post('/make-order', 'OrderController@makeOrder')->name('make.order')->middleware('can:isEditor');
+Route::get('/make-order', 'OrderController@showForm')->name('form.order')->middleware('can:isEditor','password.confirm');
+Route::post('/make-order', 'OrderController@makeOrder')->name('make.order')->middleware('can:isEditor','password.confirm');
 Route::get('/ask-show-orders', 'OrderController@askShowOrders')->name('ask.show.orders');
 Route::post('/order-index', 'OrderController@index')->name('order.index');
 Route::get('/get-orders', 'OrderController@getOrders')->middleware('can:isEditor');

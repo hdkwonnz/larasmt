@@ -135,9 +135,9 @@ class PartController extends Controller
             $orderNumber = $_GET['orderNumber'];
             $orderFeeder = Orderfeeder::where('order_number', '=',$orderNumber)
                             ->first();
-        }
-        if (!$orderFeeder){
-            return back()->with('error','sorry! no order-feeder list at this point.');
+            if (!$orderFeeder){
+                return back()->with('error','sorry! no order-feeder list at this point.');
+            }
         }
 
         if ((isset($_GET['orderId'])) && (isset($_GET['orderNumber']))){
@@ -146,9 +146,9 @@ class PartController extends Controller
             $orderFeeder = Orderfeeder::where('id', '=',$orderId)
                             ->where('order_number', '=',$orderNumber)
                             ->first();
-        }
-        if (!$orderFeeder){
-            return back()->with('error','sorry! no order-feeder list at this point.');
+            if (!$orderFeeder){
+                return back()->with('error','sorry! no order-feeder list at this point.');
+            }
         }
 
         $previous = Orderfeeder::where('id', '<', $orderFeeder->id)
@@ -219,7 +219,7 @@ class PartController extends Controller
         }
 
         $transaction = Transaction::create([
-            'order_id' => $orderFeeder->id,
+            'order_id' => $orderFeeder->order_id,
             'scanned_result' => $scannedResult,
             'scanned_type' => $request->scannedType,
             // 'scanned_time' => \Carbon\Carbon::now()->format('H:i:s'),//24 hour format,////???
