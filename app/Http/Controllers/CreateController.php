@@ -99,8 +99,8 @@ class CreateController extends Controller
         ]);
 
         $products = Product::where('machine_id','=',$request->machineId)
-                        ->get();
-        if ($products){
+                        ->count();
+        if ($products > 0){
             return response()->json([
                 'errorMsg' => 'this machine has child product.',
             ]);
@@ -125,8 +125,8 @@ class CreateController extends Controller
         ]);
 
         $products = Product::where('department_id','=',$request->departmentId)
-                        ->get();
-        if ($products){
+                        ->count();
+        if ($products > 0){
             return response()->json([
                 'errorMsg' => 'this department has child product.',
             ]);
@@ -169,8 +169,8 @@ class CreateController extends Controller
         ]);
 
         $products = Product::where('productname_id','=',$request->productnameId)
-                        ->get();
-        if ($products){
+                        ->count();
+        if ($products > 0){
             return response()->json([
                 'errorMsg' => 'this productname has child product.',
             ]);
@@ -195,8 +195,8 @@ class CreateController extends Controller
         ]);
 
         $feeders = Feeder::where('product_id','=',$request->productId)
-                        ->get();
-        if ($feeders){
+                        ->count();
+        if ($feeders > 0){
             return response()->json([
                 'errorMsg' => 'this product has child feeder.',
             ]);

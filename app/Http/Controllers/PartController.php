@@ -39,8 +39,8 @@ class PartController extends Controller
         ]);
 
         $feeders = Feeder::where('part_id','=',$request->partId)
-                        ->get();
-        if ($feeders){
+                        ->count();
+        if ($feeders > 0){
             return response()->json([
                 'errorMsg' => 'this part has child feeder.',
             ]);
