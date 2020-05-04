@@ -41,7 +41,7 @@ Route::post('/edit-user', 'UserController@editUser')->middleware('can:isAdmin');
 // Product
 Route::get('/select-product', 'ProductController@selectProduct')->name('product.select')->middleware('can:isAdminOrEditor');
 Route::post('/product', 'ProductController@index')->name('product.index')->middleware('can:isAdminOrEditor');
-Route::get('/showCreateFeederForm', 'ProductController@showCreateFeederForm')->name('product.showCreateFeederForm');
+Route::get('/showCreateFeederForm', 'ProductController@showCreateFeederForm')->name('product.showCreateFeederForm')->middleware('can:isAdmin');
 Route::get('/feeder-jsutNames', 'ProductController@jsutNames')->middleware('can:isAdmin');
 Route::post('/check-feeder', 'ProductController@checkFeeder')->name('check.feeder')->middleware('can:isAdmin');
 Route::post('/create-feeder', 'ProductController@createFeeder')->name('create.feeder')->middleware('can:isAdmin');
