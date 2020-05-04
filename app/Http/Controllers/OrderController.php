@@ -11,6 +11,7 @@ use App\Feeder;
 use App\Orderfeeder;
 use App\Productname;
 use App\Ordermachine;
+use App\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -213,6 +214,9 @@ class OrderController extends Controller
                         ->delete();
 
             Orderfeeder::where('order_id','=', $request->orderId)
+                        ->delete();
+
+            Transaction::where('order_id','=', $request->orderId)
                         ->delete();
 
             DB::commit();
