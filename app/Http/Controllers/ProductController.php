@@ -148,7 +148,7 @@ class ProductController extends Controller
                         ->first();
         if ($checkFeeder){
             return response()->json([
-                'errorMsg' => 'sorry! feeder number already exist.',
+                'errorMsg' => 'sorry! feeder number already exists.',
             ]);
         }
 

@@ -48,7 +48,7 @@ class UserController extends Controller
 
         if ($request->userRole == 'admin'){
             return response()->json([
-                'modalError' => 'admin already exist.',
+                'modalError' => 'admin already exists.',
             ]);
         }
 

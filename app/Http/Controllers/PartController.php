@@ -71,7 +71,7 @@ class PartController extends Controller
                         ->first();
         if ($part){
             return response()->json([
-                'errorMsg' => 'Own Part Number already exist.',
+                'errorMsg' => 'Own Part Number already exists.',
             ]);
         }
 
@@ -79,7 +79,7 @@ class PartController extends Controller
                         ->first();
         if ($part){
             return response()->json([
-                'errorMsg' => 'Vendor Part Number already exist.',
+                'errorMsg' => 'Vendor Part Number already exists.',
             ]);
         }
 
