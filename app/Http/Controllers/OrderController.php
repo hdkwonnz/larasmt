@@ -42,7 +42,8 @@ class OrderController extends Controller
 
     public function getOrders()
     {
-        $orders = Order::all();
+        $orders = Order::orderBy('updated_at','desc')
+                    ->get();
 
         return response()->json([
             'orders' => $orders,
@@ -114,7 +115,19 @@ class OrderController extends Controller
 
         if ($count == 0){
             return response()->json([
-                'errorMsg' => 'sorry! no products at this point',
+                'errorMsg' => 'sorry! no products at this point.',
+            ]);
+        }
+
+        $feederCount = 0;
+        foreach ($products as $product){
+            $fCount = $product->feeders->count();
+            $feederCount = $feederCount + $fCount;
+        }
+
+        if ($feederCount == 0){
+            return response()->json([
+                'errorMsg' => 'sorry! no feeder list exist.',
             ]);
         }
 

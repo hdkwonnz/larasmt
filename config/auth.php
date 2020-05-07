@@ -113,5 +113,6 @@ return [
     */
 
     // 'password_timeout' => 10800,
-    'password_timeout' => 1800, ////for 30 minutes
+    // 'password_timeout' => 1800, ////for 30 minutes
+    'password_timeout' => 60, ////for 1 minute
 ];

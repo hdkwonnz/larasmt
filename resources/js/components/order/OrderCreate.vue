@@ -195,7 +195,7 @@
 
         methods: {
             deleteOrder(orderId){
-                //alert("orderId =   " + orderId);
+                // alert("orderId =   " + orderId);
                 var message = "Do you want to delete this order?";
                 var result = confirm(message);
                 if (result == true) {
@@ -204,7 +204,7 @@
                         orderId: orderId,
                     })
                     .then(response => {
-                        //console.log(response);
+                        // console.log(response);
                         this.successMsg = "";
                         this.errorMsg = "";
                         this.successMsg = response.data.successMsg;
@@ -214,16 +214,17 @@
                         }
                     })
                     .catch(error => {
-                        //console.log(error);
+                        // console.log(error);
                         this.successMsg = "";
                         this.errorMsg = "";
-                        this.errorMsg = error;
+                        // this.errorMsg = error;
+                        this.errorMsg = error.response.data.message;
                     });
                 }
             },
 
             editOrder(){
-                //alert(this.selectedOrderId);
+                // (this.selectedOrderId);
                 var message = "Do you want to edit this order?";
                 var result = confirm(message);
                 if (result == true) {
@@ -234,7 +235,7 @@
                         departmentId: this.selectedDepartmentId,
                     })
                     .then(response => {
-                        //console.log(response);
+                        // console.log(response);
                         $('.modalError').html("").removeClass('alert').removeClass('alert-danger');
                         $('.modalMessage').html("").removeClass('alert').removeClass('alert-success');
                         this.modalError = response.data.modalError;
@@ -247,10 +248,11 @@
                         }
                     })
                     .catch(error => {
-                        //console.log(error);
+                        // console.log(error);
                         $('.modalMessage').html("").removeClass('alert').removeClass('alert-success');
                         $('.modalError').html("").removeClass('alert').removeClass('alert-danger');
-                        $('.modalError').append(error).addClass('alert').addClass('alert-danger');
+                        // $('.modalError').append(error).addClass('alert').addClass('alert-danger');
+                        $('.modalError').append(error.response.data.message).addClass('alert').addClass('alert-danger');
                     });
                 }
             },
@@ -291,7 +293,7 @@
                     orderNumber: this.orderNumber,
                 })
                 .then(response => {
-                    //console.log(response);
+                    // console.log(response);
                     this.errorMsg = response.data.errorMsg;
                     this.successMsg = response.data.successMsg;
                     if (!this.errorMsg){
@@ -301,8 +303,9 @@
                     }
                 })
                 .catch(error => {
-                    //console.log(error);
-                    this.errorMsg = error;
+                    // console.log(error);
+                    // this.errorMsg = error;
+                    this.errorMsg = error.response.data.message;
                 });
             },
         },
@@ -312,8 +315,8 @@
                 //
             })
             .then(response => {
-                //console.log(response);
-                //get 3 objects from ProductController
+                // console.log(response);
+                // get 3 objects from ProductController
                 this.justProductNames = response.data.justProductNames;
                 this.justShifts = response.data.justShifts;
                 this.justDepartments = response.data.justDepartments;

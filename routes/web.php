@@ -65,8 +65,8 @@ Route::get('/ask-show-orders', 'OrderController@askShowOrders')->name('ask.show.
 Route::post('/order-index', 'OrderController@index')->name('order.index');
 Route::get('/get-orders', 'OrderController@getOrders')->middleware('can:isEditor');
 Route::get('/order-justNames', 'OrderController@orderJustNames')->middleware('can:isEditor');
-Route::post('/delete-order', 'OrderController@deleteOrder')->middleware('can:isEditor');
-Route::post('/edit-order', 'OrderController@editOrder')->middleware('can:isEditor');
+Route::post('/delete-order', 'OrderController@deleteOrder')->middleware('can:isEditor','password.confirm');
+Route::post('/edit-order', 'OrderController@editOrder')->middleware('can:isEditor','password.confirm');
 // Create
 Route::get('/showMachineForm', 'CreateController@showMachineForm')->name('create.showMachineForm')->middleware('can:isAdmin');
 Route::get('/get-machines', 'CreateController@getMachines')->middleware('can:isAdmin');

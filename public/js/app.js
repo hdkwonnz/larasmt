@@ -3363,7 +3363,7 @@ __webpack_require__.r(__webpack_exports__);
     deleteOrder: function deleteOrder(orderId) {
       var _this = this;
 
-      //alert("orderId =   " + orderId);
+      // alert("orderId =   " + orderId);
       var message = "Do you want to delete this order?";
       var result = confirm(message);
 
@@ -3371,7 +3371,7 @@ __webpack_require__.r(__webpack_exports__);
         axios.post('/delete-order', {
           orderId: orderId
         }).then(function (response) {
-          //console.log(response);
+          // console.log(response);
           _this.successMsg = "";
           _this.errorMsg = "";
           _this.successMsg = response.data.successMsg;
@@ -3381,17 +3381,18 @@ __webpack_require__.r(__webpack_exports__);
             _this.getOrders();
           }
         })["catch"](function (error) {
-          //console.log(error);
+          // console.log(error);
           _this.successMsg = "";
-          _this.errorMsg = "";
-          _this.errorMsg = error;
+          _this.errorMsg = ""; // this.errorMsg = error;
+
+          _this.errorMsg = error.response.data.message;
         });
       }
     },
     editOrder: function editOrder() {
       var _this2 = this;
 
-      //alert(this.selectedOrderId);
+      // (this.selectedOrderId);
       var message = "Do you want to edit this order?";
       var result = confirm(message);
 
@@ -3401,7 +3402,7 @@ __webpack_require__.r(__webpack_exports__);
           orderStatus: this.orderStatus,
           departmentId: this.selectedDepartmentId
         }).then(function (response) {
-          //console.log(response);
+          // console.log(response);
           $('.modalError').html("").removeClass('alert').removeClass('alert-danger');
           $('.modalMessage').html("").removeClass('alert').removeClass('alert-success');
           _this2.modalError = response.data.modalError;
@@ -3415,10 +3416,11 @@ __webpack_require__.r(__webpack_exports__);
             _this2.getOrders();
           }
         })["catch"](function (error) {
-          //console.log(error);
+          // console.log(error);
           $('.modalMessage').html("").removeClass('alert').removeClass('alert-success');
-          $('.modalError').html("").removeClass('alert').removeClass('alert-danger');
-          $('.modalError').append(error).addClass('alert').addClass('alert-danger');
+          $('.modalError').html("").removeClass('alert').removeClass('alert-danger'); // $('.modalError').append(error).addClass('alert').addClass('alert-danger');
+
+          $('.modalError').append(error.response.data.message).addClass('alert').addClass('alert-danger');
         });
       }
     },
@@ -3459,7 +3461,7 @@ __webpack_require__.r(__webpack_exports__);
         shiftId: this.shiftId,
         orderNumber: this.orderNumber
       }).then(function (response) {
-        //console.log(response);
+        // console.log(response);
         _this4.errorMsg = response.data.errorMsg;
         _this4.successMsg = response.data.successMsg;
 
@@ -3471,8 +3473,9 @@ __webpack_require__.r(__webpack_exports__);
 
         }
       })["catch"](function (error) {
-        //console.log(error);
-        _this4.errorMsg = error;
+        // console.log(error);
+        // this.errorMsg = error;
+        _this4.errorMsg = error.response.data.message;
       });
     }
   },
@@ -3481,8 +3484,8 @@ __webpack_require__.r(__webpack_exports__);
 
     axios.get('/order-justNames', {//
     }).then(function (response) {
-      //console.log(response);
-      //get 3 objects from ProductController
+      // console.log(response);
+      // get 3 objects from ProductController
       _this5.justProductNames = response.data.justProductNames;
       _this5.justShifts = response.data.justShifts;
       _this5.justDepartments = response.data.justDepartments;
