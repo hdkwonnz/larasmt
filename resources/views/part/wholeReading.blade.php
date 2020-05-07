@@ -67,7 +67,8 @@
         </div>
 
         <!-- Current -->
-        <div class="col-md-8">
+        <!-- to protect right click on mouse => oncontextmenu="return false;" -->
+        <div oncontextmenu="return false;" class="col-md-8">
             <div class="alert alert-light">
                 <div class="text-center bg-dark text-white">
                     <span class="">Current #</span>

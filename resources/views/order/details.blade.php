@@ -76,7 +76,8 @@
     @endforeach
 
     <!-- Modal -->
-    <div class="modal fade refillModal-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    <!-- to protect right click on mouse => oncontextmenu="return false;" -->
+    <div oncontextmenu="return false;" class="modal fade refillModal-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
