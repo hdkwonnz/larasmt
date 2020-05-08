@@ -67,7 +67,8 @@
                         </td>
                         <td>{{ $transaction->own_partnumber }}</td>
                         <td>{{ $transaction->scanned_own_partnumber }}</td>
-                        <td>{{ $transaction->created_at }}</td>
+                        {{-- <td>{{ $transaction->created_at }}</td> --}}
+                        <td>{{ \Carbon\Carbon::parse($transaction->created_at)->format('H:i:s d-m-Y') }}</td>
                         <td>{{ $transaction->scanned_type }}</td>
                         <td>{{ $transaction->author }}</td>
                     </tr>
