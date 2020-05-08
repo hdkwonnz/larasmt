@@ -322,7 +322,7 @@
                 this.justDepartments = response.data.justDepartments;
             })
             .catch(error => {
-                console.log(error);
+                //console.log(error);
             });
 
             this.getOrders();

@@ -231,7 +231,7 @@
                         }
                     })
                     .catch(error => {
-                        console.log(error);
+                        //console.log(error);
                         this.successMsg = "";
                         this.errorMsg = "";
                         this.errorMsg = error;
@@ -279,7 +279,7 @@
                     }
                 })
                 .catch(error => {
-                    console.log(error);
+                    //console.log(error);
                     this.errorMsg = error;
                 });
             },
@@ -314,7 +314,7 @@
                     }
                 })
                 .catch(error => {
-                    console.log(error);
+                    //console.log(error);
                     this.errorMsg = error;
                 });
             },
@@ -343,7 +343,7 @@
                     }
                 })
                 .catch(error => {
-                    console.log(error);
+                    //console.log(error);
                     $('.error').html("");//clear field
                     $('.message').html("");//clear field
                     $('.error').append(error).css('color','red');
@@ -366,7 +366,7 @@
                 this.justDepartments = response.data.justDepartments;
             })
             .catch(error => {
-                console.log(error);
+                //console.log(error);
             });
         },
 

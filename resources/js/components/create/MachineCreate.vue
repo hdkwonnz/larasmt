@@ -96,7 +96,7 @@
                     machineName: this.machineName,
                 })
                 .then(response => {
-                    console.log(response);
+                    //console.log(response);
                     this.errorMsg = "";
                     this.successMsg = "";
                     this.errorMsg = response.data.errorMsg;
@@ -109,7 +109,7 @@
                 .catch(error => {
                     this.errorMsg = "";
                     this.successMsg = "";
-                    console.log(error);
+                    //console.log(error);
                     this.errorMsg = error;
                 });
             },
@@ -136,7 +136,7 @@
                     .catch(error => {
                         this.errorMsg = "";
                         this.successMsg = "";
-                        console.log(error);
+                        //console.log(error);
                         this.errorMsg = error;
                     });
                 }

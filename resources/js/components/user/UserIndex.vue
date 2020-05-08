@@ -215,7 +215,7 @@
 
                 })
                 .then(response => {
-                    console.log(response);
+                    //console.log(response);
                     this.users = response.data.users;
                     if (this.users){
                         $('.show_users').addClass('show_scroll_bar');
