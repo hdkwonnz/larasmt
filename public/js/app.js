@@ -3078,6 +3078,13 @@ __webpack_require__.r(__webpack_exports__);
         if (_this4.noPartSw == true) {
           _this4.ownPartNumber = _this4.partNumber;
           $('.partModal-modal-xl').modal('show'); //show modal to create part
+          // for autofocus
+
+          $(document).ready(function () {
+            $('.partModal-modal-xl').on('shown.bs.modal', function () {
+              $('#vendorPartNumber').trigger('focus');
+            });
+          });
         }
 
         _this4.errorMsg = response.data.errorMsg;
@@ -58285,8 +58292,7 @@ var render = function() {
                             id: "ownPartNumber",
                             type: "text",
                             name: "ownPartNumber",
-                            required: "",
-                            autofocus: ""
+                            required: ""
                           },
                           domProps: { value: _vm.ownPartNumber },
                           on: {

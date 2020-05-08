@@ -179,7 +179,14 @@
         $('.own_partnumber').val(ownPartNumber);//disply feeder ownPartNumber name
 
         $('.refillModal-modal-xl').modal('show'); //The class of the modal to show
-    };
+
+        // for autofocus
+        $(document).ready(function() {
+            $('.refillModal-modal-xl').on('shown.bs.modal', function() {
+            $('#partNumber').trigger('focus');
+            });
+        })
+    }
 </script>
 <!-- send Form data to PostController -->
 <script>

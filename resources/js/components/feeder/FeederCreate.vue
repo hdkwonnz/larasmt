@@ -99,7 +99,7 @@
                             <div class="form-group row">
                                 <label for="ownPartNumber" class="col-md-2 col-form-label">OwnPartNumber</label>
                                 <div class="col-md-6">
-                                    <input id="ownPartNumber" type="text" class="form-control" name="ownPartNumber" v-model="ownPartNumber" required autofocus>
+                                    <input id="ownPartNumber" type="text" class="form-control" name="ownPartNumber" v-model="ownPartNumber" required>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -298,6 +298,12 @@
                     if (this.noPartSw == true){
                         this.ownPartNumber = this.partNumber;
                         $('.partModal-modal-xl').modal('show'); //show modal to create part
+                        // for autofocus
+                        $(document).ready(function() {
+                            $('.partModal-modal-xl').on('shown.bs.modal', function() {
+                            $('#vendorPartNumber').trigger('focus');
+                            });
+                        })
                     }
                     this.errorMsg = response.data.errorMsg;
                     this.successMsg = response.data.successMsg;
