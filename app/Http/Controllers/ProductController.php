@@ -39,23 +39,31 @@ class ProductController extends Controller
     {
         $productId = $_GET['productId'];
 
-        $feeders = Feeder::where('product_id','=',$productId)
+        $feeders = Feeder::with('part')
+                        ->where('product_id','=',$productId)
                         ->orderBy('feeder_number', 'asc')
                         ->get();
-        //return $feeders;
+        // return $feeders;
 
-        $parts = [];
-        foreach($feeders as $feeder){
-            $part = Part::find($feeder->part_id);
-            $part->setAttribute('feeder_number',$feeder->feeder_number);//stackoverflow.com/questions/31474452/manually-add-item-to-existing-object-laravel-5
-            $part->setAttribute('feeder_position',$feeder->position);
-            $part->setAttribute('feeder_id',$feeder->id);
-            $parts[] = $part; //add to array
-        }
-        //return $parts;
+        ///////////////////////////////////////////////////////////////////////////////////////
+        ////do not dlete below, good example for setAttribute and array and multiple objects..
+        ///////////////////////////////////////////////////////////////////////////////////////
+        // $parts = [];
+        // foreach($feeders as $feeder){
+        //     $part = Part::find($feeder->part_id);
+        //     $part->setAttribute('feeder_number',$feeder->feeder_number);//stackoverflow.com/questions/31474452/manually-add-item-to-existing-object-laravel-5
+        //     $part->setAttribute('feeder_position',$feeder->position);
+        //     $part->setAttribute('feeder_id',$feeder->id);
+        //     $parts[] = $part; //add to array
+        // }
+        // //return $parts;
+
+        // return response()->json([
+        //     'parts' => $parts,
+        // ]);
 
         return response()->json([
-            'parts' => $parts,
+            'feeders' => $feeders,
         ]);
     }
 
@@ -82,23 +90,8 @@ class ProductController extends Controller
             ]);
         }
 
-        $feeders = Feeder::where('product_id','=',$product->id)
-                        ->orderBy('feeder_number', 'asc')
-                        ->get();
-
-        // $parts = [];
-        // foreach($feeders as $feeder){
-        //     $part = Part::find($feeder->part_id);
-        //     $part->setAttribute('feeder_number',$feeder->feeder_number);//stackoverflow.com/questions/31474452/manually-add-item-to-existing-object-laravel-5
-        //     $part->setAttribute('feeder_position',$feeder->position);
-        //     $part->setAttribute('feeder_id',$feeder->id);
-        //     $parts[] = $part; //add to array
-        // }
-        // // return $parts;
-
         return response()->json([
             'errorMsg' => null,
-            //'parts' => $parts,
             'product' => $product
         ]);
     }
@@ -202,7 +195,12 @@ class ProductController extends Controller
         $productName = Productname::findOrFail($request->productNameId);
         $department = Department::findOrFail($request->lineId);
 
-        $products = Product::with('machine','feeders')
+        // $products = Product::with('machine','feeders')
+        //     ->where('productname_id','=',$request->productNameId)
+        //     ->where('department_id','=',$request->lineId)
+        //     ->get();
+
+        $products = Product::with('machine')
             ->where('productname_id','=',$request->productNameId)
             ->where('department_id','=',$request->lineId)
             ->get();

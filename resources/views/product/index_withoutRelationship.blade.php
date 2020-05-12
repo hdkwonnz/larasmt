@@ -27,15 +27,14 @@
             </div>
         </div>
     </div>
-        @php
-        $feeders = App\Feeder::with('part')
-                    ->where('product_id','=',$product->id)
-                    ->orderBy('feeder_number', 'asc')
-                    ->get();
-        @endphp
 
-        @foreach ($feeders as $feeder)
+        @foreach ($product->feeders as $feeder)
         <div class="row">
+            @php
+            $partId = $feeder->part_id;
+            $part = App\Part::where('id', '=', $partId)
+                ->first();
+            @endphp
             <div class="col-md-1 w-100">
                 {{-- <a href="{{ route('part.refill', $feeder) }}" class="btn btn-primary">{{ $feeder->feeder_number }}</a> --}}
                 {{-- <span class="btn btn-primary">{{ $feeder->feeder_number }}</span> --}}
@@ -43,16 +42,16 @@
             <span class="text-danger">:{{ $feeder->position }}</span>
             </div>
             <div class="col-md-3">
-                {{ $feeder->part->own_partnumber }}
+                {{ $part->own_partnumber }}
             </div>
             <div class="col-md-3">
-                {{ $feeder->part->vendor_partnumber }}
+                {{ $part->vendor_partnumber }}
             </div>
             <div class="col-md-3">
-                {{ $feeder->part->description }}
+                {{ $part->description }}
             </div>
             <div class="col-md-2">
-                {{ $feeder->part->value }}
+                {{ $part->value }}
             </div>
         </div>
         @endforeach

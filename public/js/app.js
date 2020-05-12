@@ -2190,7 +2190,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.post('/create-machine', {
         machineName: this.machineName
       }).then(function (response) {
-        console.log(response);
+        //console.log(response);
         _this2.errorMsg = "";
         _this2.successMsg = "";
         _this2.errorMsg = response.data.errorMsg;
@@ -2204,8 +2204,8 @@ __webpack_require__.r(__webpack_exports__);
         }
       })["catch"](function (error) {
         _this2.errorMsg = "";
-        _this2.successMsg = "";
-        console.log(error);
+        _this2.successMsg = ""; //console.log(error);
+
         _this2.errorMsg = error;
       });
     },
@@ -2233,8 +2233,8 @@ __webpack_require__.r(__webpack_exports__);
           }
         })["catch"](function (error) {
           _this3.errorMsg = "";
-          _this3.successMsg = "";
-          console.log(error);
+          _this3.successMsg = ""; //console.log(error);
+
           _this3.errorMsg = error;
         });
       }
@@ -2439,8 +2439,7 @@ __webpack_require__.r(__webpack_exports__);
       _this4.justMachines = response.data.justMachines; //this.justDepartments = response.data.justDepartments[0];//매우 중요[0]사용.
 
       _this4.justDepartments = response.data.justDepartments;
-    })["catch"](function (error) {
-      console.log(error);
+    })["catch"](function (error) {//console.log(error);
     });
     this.getProducts();
   },
@@ -2975,7 +2974,8 @@ __webpack_require__.r(__webpack_exports__);
       errorMsg: null,
       product: {},
       productId: "",
-      parts: {},
+      // parts: {},
+      feeders: {},
       productNameId: "",
       machineId: "",
       departmentId: "",
@@ -3006,7 +3006,7 @@ __webpack_require__.r(__webpack_exports__);
             _this.getFeeders();
           }
         })["catch"](function (error) {
-          console.log(error);
+          //console.log(error);
           _this.successMsg = "";
           _this.errorMsg = "";
           _this.errorMsg = error;
@@ -3022,9 +3022,9 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         //console.log(response);
-        _this2.parts = response.data.parts;
+        _this2.feeders = response.data.feeders;
 
-        if (_this2.parts) {
+        if (_this2.feeders) {
           $('.show_feeders').addClass('show_scroll_bar');
         }
       });
@@ -3059,7 +3059,7 @@ __webpack_require__.r(__webpack_exports__);
           _this3.feederSw = true;
         }
       })["catch"](function (error) {
-        console.log(error);
+        //console.log(error);
         _this3.errorMsg = error;
       });
     },
@@ -3098,7 +3098,7 @@ __webpack_require__.r(__webpack_exports__);
 
         }
       })["catch"](function (error) {
-        console.log(error);
+        //console.log(error);
         _this4.errorMsg = error;
       });
     },
@@ -3130,7 +3130,7 @@ __webpack_require__.r(__webpack_exports__);
           $('.error').append(response.data).css('color', 'red');
         }
       })["catch"](function (error) {
-        console.log(error);
+        //console.log(error);
         $('.error').html(""); //clear field
 
         $('.message').html(""); //clear field
@@ -3151,8 +3151,7 @@ __webpack_require__.r(__webpack_exports__);
       _this6.justMachines = response.data.justMachines; //this.justDepartments = response.data.justDepartments[0];//매우 중요[0]사용.
 
       _this6.justDepartments = response.data.justDepartments;
-    })["catch"](function (error) {
-      console.log(error);
+    })["catch"](function (error) {//console.log(error);
     });
   },
   mounted: function mounted() {}
@@ -3496,8 +3495,7 @@ __webpack_require__.r(__webpack_exports__);
       _this5.justProductNames = response.data.justProductNames;
       _this5.justShifts = response.data.justShifts;
       _this5.justDepartments = response.data.justDepartments;
-    })["catch"](function (error) {
-      console.log(error);
+    })["catch"](function (error) {//console.log(error);
     });
     this.getOrders();
   },
@@ -3919,7 +3917,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       axios.get('/get-users', {}).then(function (response) {
-        console.log(response);
+        //console.log(response);
         _this2.users = response.data.users;
 
         if (_this2.users) {
@@ -58449,23 +58447,23 @@ var render = function() {
           _c("table", { staticClass: "table table-striped table-bordered" }, [
             _c(
               "tbody",
-              _vm._l(_vm.parts, function(part) {
-                return _c("tr", { key: part.index }, [
+              _vm._l(_vm.feeders, function(feeder) {
+                return _c("tr", { key: feeder.index }, [
                   _c("td", [
-                    _c("strong", [_vm._v(_vm._s(part.feeder_number))]),
+                    _c("strong", [_vm._v(_vm._s(feeder.feeder_number))]),
                     _vm._v(" : "),
                     _c("span", { staticClass: "text-danger" }, [
-                      _vm._v(_vm._s(part.feeder_position))
+                      _vm._v(_vm._s(feeder.position))
                     ])
                   ]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(part.own_partnumber))]),
+                  _c("td", [_vm._v(_vm._s(feeder.part.own_partnumber))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(part.vendor_partnumber))]),
+                  _c("td", [_vm._v(_vm._s(feeder.part.vendor_partnumber))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(part.value))]),
+                  _c("td", [_vm._v(_vm._s(feeder.part.value))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(part.description))]),
+                  _c("td", [_vm._v(_vm._s(feeder.part.description))]),
                   _vm._v(" "),
                   _c("td", { staticClass: "text-center" }, [
                     _c(
@@ -58474,7 +58472,7 @@ var render = function() {
                         attrs: { href: "javascript:void(0)" },
                         on: {
                           click: function($event) {
-                            return _vm.deleteFeeder(part.feeder_id)
+                            return _vm.deleteFeeder(_vm.id)
                           }
                         }
                       },

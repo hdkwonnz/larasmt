@@ -152,16 +152,16 @@
                 <div class="table-responsive mt-3">
                     <table class="table table-striped table-bordered">
                         <tbody>
-                            <tr v-for="feeder in feeders" :key="feeder.index" >
+                            <tr v-for="part in parts" :key="part.index" >
                                 <td>
-                                    <strong>{{ feeder.feeder_number}}</strong> : <span class="text-danger">{{ feeder.position}}</span>
+                                    <strong>{{ part.feeder_number}}</strong> : <span class="text-danger">{{ part.feeder_position}}</span>
                                 </td>
-                                <td>{{ feeder.part.own_partnumber}}</td>
-                                <td>{{ feeder.part.vendor_partnumber  }}</td>
-                                <td>{{ feeder.part.value }}</td>
-                                <td>{{ feeder.part.description }}</td>
+                                <td>{{ part.own_partnumber}}</td>
+                                <td>{{ part.vendor_partnumber  }}</td>
+                                <td>{{ part.value }}</td>
+                                <td>{{ part.description }}</td>
                                 <td class="text-center">
-                                    <a href="javascript:void(0)" @click="deleteFeeder(id)">
+                                    <a href="javascript:void(0)" @click="deleteFeeder(part.feeder_id)">
                                         <i class="fa fa-trash text-danger"></i>
                                     </a>
                                 </td>
@@ -200,8 +200,7 @@
                 errorMsg: null,
                 product: {},
                 productId: "",
-                // parts: {},
-                feeders: {},
+                parts: {},
                 productNameId: "",
                 machineId: "",
                 departmentId:"",
@@ -246,8 +245,8 @@
                 })
                 .then(response => {
                     //console.log(response);
-                    this.feeders = response.data.feeders;
-                    if (this.feeders){
+                    this.parts = response.data.parts;
+                    if (this.parts){
                         $('.show_feeders').addClass('show_scroll_bar');
                     }
                 });
