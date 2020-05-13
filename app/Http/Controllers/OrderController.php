@@ -69,9 +69,9 @@ class OrderController extends Controller
     {
         // $this->authorize('isAdminOrEditor');
 
-        $justProductNames = Productname::all();
-        $justDepartments = Department::all();
-        $justShifts = Shiftwork::all();
+        $justProductNames = Productname::orderBy('name','asc')->get();
+        $justDepartments = Department::orderBy('name','asc')->get();
+        $justShifts = Shiftwork::orderBy('name','asc')->get();
 
         return response()->json([
             'justProductNames' => $justProductNames,

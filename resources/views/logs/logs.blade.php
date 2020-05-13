@@ -7,7 +7,7 @@
 <div class="container mt-5">
 
     <div class="mb-2">
-        <h4>System Logs</h4>
+        <h4>System Error Logs</h4>
     </div>
 
     <form action="{{ route('logs') }}">
@@ -16,11 +16,11 @@
     </form>
 
     @if(empty($data['file']))
-        <div>
+        <div class="col-md-12">
             <h3>No Logs Found</h3>
         </div>
     @else
-        <div>
+        <div class="col-md-12">
             <h5>Updated On: <b>{{ $data['lastModified']->format('Y-m-d h:i a') }}</b></h5>
             <h5>File Size: <b>{{ round($data['size'] / 1024) }} KB</b></h5>
             <pre>{{ $data['file'] }}</pre>

@@ -22,11 +22,11 @@ class ProductController extends Controller
 
     public function jsutNames()
     {
-        $justProductNames = Productname::all();
+        $justProductNames = Productname::orderBy('name','asc')->get();
 
-        $justMachines = Machine::all();
+        $justMachines = Machine::orderBy('name','asc')->get();
 
-        $justDepartments = Department::all();
+        $justDepartments = Department::orderBy('name','asc')->get();
 
         return response()->json([
             'justProductNames' => $justProductNames,
@@ -217,9 +217,9 @@ class ProductController extends Controller
 
     public function selectProduct()
     {
-        $justProductNames = Productname::all();
+        $justProductNames = Productname::orderBy('name','asc')->get();
 
-        $justDepartments = Department::all();
+        $justDepartments = Department::orderBy('name','asc')->get();
 
         return view('product.selectProduct', compact('justProductNames','justDepartments'));
     }

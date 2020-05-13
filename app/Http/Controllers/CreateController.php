@@ -237,6 +237,14 @@ class CreateController extends Controller
             'machineName' => 'required',
         ]);
 
+        //check existing
+        $count = Machine::where('name','=', $request->machineName)->count();
+        if ($count > 0){
+            return response()->json([
+                'errorMsg' => 'this machine already exists.',
+            ]);
+        }
+
         //create machine table
         $machine = Machine::create([
             'name' => $request->machineName,
@@ -261,6 +269,14 @@ class CreateController extends Controller
         $request->validate([
             'departmentName' => 'required',
         ]);
+
+        //check existing
+        $count = Department::where('name','=', $request->departmentName)->count();
+        if ($count > 0){
+            return response()->json([
+                'errorMsg' => 'this department already exists.',
+            ]);
+        }
 
         //create department table
         $department = Department::create([
@@ -287,6 +303,14 @@ class CreateController extends Controller
             'shiftName' => 'required',
         ]);
 
+        //check existing
+        $count = Shiftwork::where('name','=', $request->shiftName)->count();
+        if ($count > 0){
+            return response()->json([
+                'errorMsg' => 'this shift work already exists.',
+            ]);
+        }
+
         //create shift table
         $shift = Shiftwork::create([
             'name' => $request->shiftName,
@@ -311,6 +335,14 @@ class CreateController extends Controller
         $request->validate([
             'productName' => 'required',
         ]);
+
+         //check existing
+         $count = Productname::where('name','=', $request->productName)->count();
+         if ($count > 0){
+             return response()->json([
+                 'errorMsg' => 'this product name already exists.',
+             ]);
+         }
 
         //create productname table
         $productname = Productname::create([
@@ -338,6 +370,17 @@ class CreateController extends Controller
             'machineId' => 'required|numeric',
             'departmentId' => 'required|numeric',
         ]);
+
+        //check existing
+        $count = Product::where('productname_id','=', $request->productNameId)
+                        ->where('machine_id','=', $request->machineId)
+                        ->where('department_id','=', $request->departmentId)
+                        ->count();
+        if ($count){
+            return response()->json([
+                'errorMsg' => 'this product already exists.',
+            ]);
+        }
 
         //create productname table
         $product = Product::create([
