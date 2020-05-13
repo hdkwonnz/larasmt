@@ -61,9 +61,9 @@
                     <table class="table table-striped table-bordered">
                         <tbody>
                             <tr v-for="product in products" :key="product.index" >
-                                <td>{{ product.pname }}</td>
-                                <td>{{ product.mname }}</td>
-                                <td>{{ product.dname }}</td>
+                                <td>{{ product.productname.name }}</td>
+                                <td>{{ product.machine.name }}</td>
+                                <td>{{ product.department.name }}</td>
                                 <td class="text-center">
                                     <a href="javascript:void(0)" @click="deleteProduct(product.id)">
                                         <i class="fa fa-trash text-danger"></i>

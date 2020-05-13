@@ -39,7 +39,9 @@ class CreateController extends Controller
 
     public function getMachines()
     {
-        $machines = Machine::orderBy('created_at','desc')
+        $machines = Machine::
+                        // orderBy('created_at','desc')
+                        orderBy('name','asc')
                         ->get();
 
         return response()->json([
@@ -49,7 +51,9 @@ class CreateController extends Controller
 
     public function getDepartments()
     {
-        $departments = Department::orderBy('created_at','desc')
+        $departments = Department::
+                        // orderBy('created_at','desc')
+                        orderBy('name','asc')
                         ->get();
 
         return response()->json([
@@ -59,7 +63,9 @@ class CreateController extends Controller
 
     public function getShifts()
     {
-        $shifts = Shiftwork::orderBy('created_at','desc')
+        $shifts = Shiftwork::
+                    // orderBy('created_at','desc')
+                    orderBy('name','asc')
                     ->get();
 
         return response()->json([
@@ -69,7 +75,9 @@ class CreateController extends Controller
 
     public function getProductnames()
     {
-        $productnames = Productname::orderBy('created_at','desc')
+        $productnames = Productname::
+                            // orderBy('created_at','desc')
+                            orderBy('name','asc')
                             ->get();
 
         return response()->json([
@@ -79,8 +87,17 @@ class CreateController extends Controller
 
     public function getProducts()
     {
-        $products = Product::with('productname','machine','department')
-                        ->orderBy('created_at','desc')
+        // $products = Product::with('productname','machine','department')
+        //                 ->orderBy('created_at','desc')
+        //                 ->get();
+        // //return $products;
+
+        $products = Product::
+                        select('products.id AS id','productnames.name AS pname','machines.name AS mname','departments.name AS dname')
+                        ->join('productnames','productnames.id','=','products.productname_id')
+                        ->join('machines','machines.id','=','products.machine_id')
+                        ->join('departments','departments.id','=','products.department_id')
+                        ->orderBy('productnames.name','asc')
                         ->get();
         //return $products;
 

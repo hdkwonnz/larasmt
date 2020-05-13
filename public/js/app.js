@@ -57485,11 +57485,11 @@ var render = function() {
               "tbody",
               _vm._l(_vm.products, function(product) {
                 return _c("tr", { key: product.index }, [
-                  _c("td", [_vm._v(_vm._s(product.productname.name))]),
+                  _c("td", [_vm._v(_vm._s(product.pname))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(product.machine.name))]),
+                  _c("td", [_vm._v(_vm._s(product.mname))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(product.department.name))]),
+                  _c("td", [_vm._v(_vm._s(product.dname))]),
                   _vm._v(" "),
                   _c("td", { staticClass: "text-center" }, [
                     _c(
