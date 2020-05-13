@@ -79,7 +79,7 @@ class CreateController extends Controller
 
     public function getProducts()
     {
-        $products = Product::with('machine','productname','department')
+        $products = Product::with('productname','machine','department')
                         ->orderBy('created_at','desc')
                         ->get();
         //return $products;

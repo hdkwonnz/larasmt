@@ -153,11 +153,11 @@ class OrderController extends Controller
                     'machine_id' => $product->machine->id,
                     'machine_name' => $product->machine->name
                 ]);
-
-                foreach($product->feeders as $feeder){
-                    $partId = $feeder->part_id;
-                    $part = Part::where('id', '=', $partId)
-                        ->first();
+                $feeders = Feeder::with('part')
+                        ->where('product_id','=',$product->id)
+                        ->orderBy('feeder_number', 'asc')
+                        ->get();
+                foreach($feeders as $feeder){
                     $orderfeeder = Orderfeeder::create([
                         'order_id' => $order->id,
                         'order_number' => $request->orderNumber,
@@ -166,11 +166,11 @@ class OrderController extends Controller
                         'product_name' => $order->product_name,
                         'department_name' => $order->department_name,
                         'shift_name' => $order->shift_name,
-                        'part_id' => $partId,
-                        'own_partnumber' => $part->own_partnumber,
-                        'vendor_partnumber' => $part->vendor_partnumber,
-                        'description' => $part->description,
-                        'value' => $part->value,
+                        'part_id' => $feeder->part_id,
+                        'own_partnumber' => $feeder->part->own_partnumber,
+                        'vendor_partnumber' => $feeder->part->vendor_partnumber,
+                        'description' => $feeder->part->description,
+                        'value' => $feeder->part->value,
                         'feeder_number'=>$feeder->feeder_number,
                         'position' => $feeder->position,
                         'author' => auth()->user()->name,

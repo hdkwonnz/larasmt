@@ -116,7 +116,7 @@
             },
 
             createProduct(){
-                if (this.productNameId == "" || this.machineId == "" || this.departmentId){
+                if (this.productNameId == "" || this.machineId == "" || this.departmentId == ""){
                     alert("Please select proper item(s).")
                     return;
                 }

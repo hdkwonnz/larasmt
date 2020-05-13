@@ -2370,7 +2370,7 @@ __webpack_require__.r(__webpack_exports__);
     createProduct: function createProduct() {
       var _this2 = this;
 
-      if (this.productNameId == "" || this.machineId == "" || this.departmentId) {
+      if (this.productNameId == "" || this.machineId == "" || this.departmentId == "") {
         alert("Please select proper item(s).");
         return;
       }
