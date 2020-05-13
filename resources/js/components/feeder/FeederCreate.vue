@@ -161,7 +161,7 @@
                                 <td>{{ feeder.part.value }}</td>
                                 <td>{{ feeder.part.description }}</td>
                                 <td class="text-center">
-                                    <a href="javascript:void(0)" @click="deleteFeeder(id)">
+                                    <a href="javascript:void(0)" @click="deleteFeeder(feeder.id)">
                                         <i class="fa fa-trash text-danger"></i>
                                     </a>
                                 </td>

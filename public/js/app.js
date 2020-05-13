@@ -58472,7 +58472,7 @@ var render = function() {
                         attrs: { href: "javascript:void(0)" },
                         on: {
                           click: function($event) {
-                            return _vm.deleteFeeder(_vm.id)
+                            return _vm.deleteFeeder(feeder.id)
                           }
                         }
                       },
