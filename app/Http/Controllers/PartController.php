@@ -12,6 +12,51 @@ use Illuminate\Http\Request;
 
 class PartController extends Controller
 {
+    public function partProductForm()
+    {
+        return view('part.partProductForm');
+    }
+
+    public function partProduct(Request $request)
+    {
+        // return $request->all();
+
+        $part = Part::with('feeders')
+                    ->where('own_partnumber','=',$request->ownPartNumber)->first();
+
+        // return $part;
+
+        if (!$part){
+            return response()->json([
+                'errorMsg' => 'this part does not exist.',
+            ]);
+        }
+
+        $products = [];
+
+        foreach ($part->feeders as $feeder){
+            $product = Product::with('machine','productname','department')
+                        ->find($feeder->product_id);
+            $product->setAttribute('feeder_number',$feeder->feeder_number);
+            $product->setAttribute('feeder_position',$feeder->position);
+            $products[] = $product;
+        }
+
+        // return $products;
+
+        if (!$products)
+        {
+            return response()->json([
+                'errorMsg' => 'this part does not match with any products.',
+            ]);
+        }
+
+        return response()->json([
+            'part' => $part,
+            'products' => $products,
+        ]);
+    }
+
     public function createPartForm()
     {
         return view('part.createPartForm');

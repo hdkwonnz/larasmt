@@ -31,6 +31,7 @@ Vue.component('product-create', require('./components/create/ProductCreate.vue')
 Vue.component('order-create', require('./components/order/OrderCreate.vue').default);
 Vue.component('part-create', require('./components/part/PartCreate.vue').default);
 Vue.component('user-index', require('./components/user/UserIndex.vue').default);
+Vue.component('part-product', require('./components/part/PartProduct.vue').default);
 
 Vue.filter('myDate',function(created){ //////////////
 	return moment(created).format('DD-MM-YYYY, H:mm:ss'); /////////////

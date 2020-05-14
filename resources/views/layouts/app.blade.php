@@ -80,9 +80,12 @@
                             <a class="nav-link" href="{{ route('part.showReadingForm') }}">CheckAll</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link" href="{{ route('part.selectLogsForm') }}" target="_blank">Transactions</a>
+                            <a class="nav-link" href="{{ route('part.selectLogsForm') }}" target="_blank">Transactions</a>
                         </li>
                         @endcannot
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('part.partProductForm') }}">PartProduct</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

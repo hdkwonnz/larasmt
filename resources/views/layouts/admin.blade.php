@@ -63,6 +63,9 @@
                             <a class="nav-link" href="{{ route('logs') }}">SystemLogs</a>
                         </li>
                         @endcan <!-- end for ACL admin or editor -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('part.partProductForm') }}">PartProduct</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
