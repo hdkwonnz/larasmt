@@ -21,6 +21,12 @@ class PartController extends Controller
     {
         // return $request->all();
 
+        //check validation
+        $request->validate([
+            'ownPartNumber' => 'required',
+            // 'vendorPartNumber' => 'required',
+        ]);
+
         $part = Part::with('feeders')
                     ->where('own_partnumber','=',$request->ownPartNumber)->first();
 
