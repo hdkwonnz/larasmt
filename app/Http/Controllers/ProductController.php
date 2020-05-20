@@ -124,6 +124,7 @@ class ProductController extends Controller
             'feederNumber' => 'required|numeric',
             'partNumber'  => 'required',
             'feederPosition' => 'required',
+            'qty' => 'required|numeric',
         ]);
 
         //check to exist for part number
@@ -151,6 +152,7 @@ class ProductController extends Controller
             'part_id' => $part->id,
             'feeder_number' => $request->feederNumber,
             'position' => $request->feederPosition,
+            'qty' => $request->qty,
             'author' => auth()->user()->name,
         ]);
         if ($feeder){

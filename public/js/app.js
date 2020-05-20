@@ -2949,6 +2949,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['user_email', 'user_name'],
   data: function data() {
@@ -2961,6 +2966,7 @@ __webpack_require__.r(__webpack_exports__);
         value: 'R'
       }],
       // feederPosition: "F",
+      qty: "",
       feederPosition: "",
       partDescription: "",
       partValue: "",
@@ -3057,6 +3063,7 @@ __webpack_require__.r(__webpack_exports__);
           $('.machine_name').attr("disabled", "disabled");
           $('.department_name').attr("disabled", "disabled");
           _this3.feederSw = true;
+          _this3.feederPosition = 'F';
         }
       })["catch"](function (error) {
         //console.log(error);
@@ -3070,7 +3077,8 @@ __webpack_require__.r(__webpack_exports__);
         productId: this.product.id,
         feederNumber: this.feederNumber,
         partNumber: this.partNumber,
-        feederPosition: this.feederPosition
+        feederPosition: this.feederPosition,
+        qty: this.qty
       }).then(function (response) {
         //console.log(response);
         _this4.noPartSw = response.data.noPartSw;
@@ -3085,17 +3093,18 @@ __webpack_require__.r(__webpack_exports__);
               $('#vendorPartNumber').trigger('focus');
             });
           });
-        }
+        } else {
+          _this4.errorMsg = response.data.errorMsg;
+          _this4.successMsg = response.data.successMsg;
 
-        _this4.errorMsg = response.data.errorMsg;
-        _this4.successMsg = response.data.successMsg;
+          if (!_this4.errorMsg) {
+            _this4.feederNumber = "";
+            _this4.partNumber = "";
+            _this4.qty = "";
 
-        if (!_this4.errorMsg) {
-          _this4.feederNumber = "";
-          _this4.partNumber = "";
+            _this4.getFeeders(); //display feeders
 
-          _this4.getFeeders(); //display feeders
-
+          }
         }
       })["catch"](function (error) {
         //console.log(error);
@@ -3112,22 +3121,31 @@ __webpack_require__.r(__webpack_exports__);
         partDescription: this.partDescription
       }).then(function (response) {
         //console.log(response);
-        if (response.data == "good") {
-          $('.message').html(""); //clear field
+        // if (response.data == "good"){
+        //     $('.message').html("");//clear field
+        //     $('.error').html("");//clear field
+        //     $('.message').append(response.data).css('color','blue');
+        //     setTimeout(() => {  $('.partModal-modal-xl').modal('hide'); }, 1000);//auto hide
+        //     this.ownPartNumber = "";
+        //     this.vendorPartNumber = "";
+        //     this.partValue = "";
+        //     this.partDescription = "";
+        // }else{
+        //     $('.error').append(response.data).css('color','red')
+        // }
+        $('.message').html(""); //clear field
 
-          $('.error').html(""); //clear field
+        $('.error').html(""); //clear field
 
-          $('.message').append(response.data).css('color', 'blue');
-          setTimeout(function () {
-            $('.partModal-modal-xl').modal('hide');
-          }, 1000); //auto hide
+        if (response.data.successMsg) {
+          $('.message').append(response.data.successMsg).css('color', 'blue'); //setTimeout(() => {  $('.partModal-modal-xl').modal('hide'); }, 1000);//auto hide
 
           _this5.ownPartNumber = "";
           _this5.vendorPartNumber = "";
           _this5.partValue = "";
           _this5.partDescription = "";
         } else {
-          $('.error').append(response.data).css('color', 'red');
+          $('.error').append(response.data.errorMsg).css('color', 'red');
         }
       })["catch"](function (error) {
         //console.log(error);
@@ -3468,6 +3486,8 @@ __webpack_require__.r(__webpack_exports__);
         orderNumber: this.orderNumber
       }).then(function (response) {
         // console.log(response);
+        _this4.successMsg = "";
+        _this4.errorMsg = "";
         _this4.errorMsg = response.data.errorMsg;
         _this4.successMsg = response.data.successMsg;
 
@@ -3481,6 +3501,8 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         // console.log(error);
         // this.errorMsg = error;
+        _this4.successMsg = "";
+        _this4.errorMsg = "";
         _this4.errorMsg = error.response.data.message;
       });
     }
@@ -3700,6 +3722,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -58244,7 +58267,7 @@ var render = function() {
                 [_vm._v("Feeder #")]
               ),
               _vm._v(" "),
-              _c("div", { staticClass: "col-md-2" }, [
+              _c("div", { staticClass: "col-md-1" }, [
                 _c("input", {
                   directives: [
                     {
@@ -58278,12 +58301,50 @@ var render = function() {
                 "label",
                 {
                   staticClass: "col-md-1 col-form-label",
+                  attrs: { for: "Qty" }
+                },
+                [_vm._v("Qty/PCB")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-1" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.qty,
+                      expression: "qty"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "number",
+                    name: "qty",
+                    min: "1",
+                    required: ""
+                  },
+                  domProps: { value: _vm.qty },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.qty = $event.target.value
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c(
+                "label",
+                {
+                  staticClass: "col-md-1 col-form-label",
                   attrs: { for: "Part #" }
                 },
                 [_vm._v("Part #")]
               ),
               _vm._v(" "),
-              _c("div", { staticClass: "col-md-4" }, [
+              _c("div", { staticClass: "col-md-3" }, [
                 _c("input", {
                   directives: [
                     {
@@ -58597,13 +58658,13 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(feeder.qty))]),
+                  _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(feeder.part.own_partnumber))]),
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(feeder.part.vendor_partnumber))]),
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(feeder.part.value))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(feeder.part.description))]),
                   _vm._v(" "),
                   _c("td", { staticClass: "text-center" }, [
                     _c(
@@ -58718,7 +58779,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "offset-md-2 col-md-6 " }, [
-        _c("span", { staticClass: "message display-4" })
+        _c("span", { staticClass: "message" })
       ])
     ])
   },
@@ -58728,7 +58789,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "offset-md-2 col-md-6" }, [
-        _c("span", { staticClass: "error display-4" })
+        _c("span", { staticClass: "error" })
       ])
     ])
   },
@@ -59844,7 +59905,9 @@ var render = function() {
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(product.feeder_number))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(product.feeder_position))])
+                  _c("td", [_vm._v(_vm._s(product.feeder_position))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(product.feeder_qty))])
                 ])
               }),
               0

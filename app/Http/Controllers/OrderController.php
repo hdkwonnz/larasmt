@@ -173,6 +173,7 @@ class OrderController extends Controller
                         'value' => $feeder->part->value,
                         'feeder_number'=>$feeder->feeder_number,
                         'position' => $feeder->position,
+                        'qty' => $feeder->qty,
                         'author' => auth()->user()->name,
                     ]);
                 }

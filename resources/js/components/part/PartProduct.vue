@@ -69,6 +69,7 @@
                                 <td>{{ product.department.name }}</td>
                                 <td>{{ product.feeder_number}}</td>
                                 <td>{{ product.feeder_position}}</td>
+                                <td>{{ product.feeder_qty}}</td>
                             </tr>
                         </tbody>
                     </table>

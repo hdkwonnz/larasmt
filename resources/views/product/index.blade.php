@@ -42,15 +42,18 @@
                 <span class="display-5"><strong>{{ $feeder->feeder_number }}</strong></span>
             <span class="text-danger">:{{ $feeder->position }}</span>
             </div>
+            <div class="col-md-1 text-right">
+                {{ $feeder->qty }}
+            </div>
             <div class="col-md-3">
                 {{ $feeder->part->own_partnumber }}
             </div>
             <div class="col-md-3">
                 {{ $feeder->part->vendor_partnumber }}
             </div>
-            <div class="col-md-3">
+            {{-- <div class="col-md-3">
                 {{ $feeder->part->description }}
-            </div>
+            </div> --}}
             <div class="col-md-2">
                 {{ $feeder->part->value }}
             </div>

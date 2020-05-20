@@ -294,6 +294,8 @@
                 })
                 .then(response => {
                     // console.log(response);
+                    this.successMsg = "";
+                    this.errorMsg = "";
                     this.errorMsg = response.data.errorMsg;
                     this.successMsg = response.data.successMsg;
                     if (!this.errorMsg){
@@ -305,6 +307,8 @@
                 .catch(error => {
                     // console.log(error);
                     // this.errorMsg = error;
+                    this.successMsg = "";
+                    this.errorMsg = "";
                     this.errorMsg = error.response.data.message;
                 });
             },

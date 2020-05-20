@@ -45,6 +45,7 @@ class PartController extends Controller
                         ->find($feeder->product_id);
             $product->setAttribute('feeder_number',$feeder->feeder_number);
             $product->setAttribute('feeder_position',$feeder->position);
+            $product->setAttribute('feeder_qty',$feeder->qty);
             $products[] = $product;
         }
 

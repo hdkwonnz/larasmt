@@ -59,6 +59,9 @@
                 </button>
                 <span class="text-danger">{{ $feeder->position }}</span>
             </div>
+            <div class="col-md-1 text-right">
+                {{ $feeder->qty }}
+            </div>
             <div class="col-md-3">
                 {{ $feeder->own_partnumber }}
             </div>

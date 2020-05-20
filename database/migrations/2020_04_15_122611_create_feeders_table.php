@@ -18,9 +18,10 @@ class CreateFeedersTable extends Migration
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products');
             $table->unsignedBigInteger('part_id');
-            // $table->foreign('part_id')->references('id')->on('parts');
+            $table->foreign('part_id')->references('id')->on('parts');
             $table->unsignedInteger('feeder_number');
             $table->string('position')->nullable();
+            $table->unsignedInteger('qty');
             $table->string('author');
             $table->timestamps();
         });

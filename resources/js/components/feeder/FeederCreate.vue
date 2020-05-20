@@ -57,11 +57,15 @@
         <form v-if="feederSw" @submit.prevent="createFeeder()" class="mt-3">
             <div class="form-group row">
                 <label for="Feeder #" class="col-md-1 col-form-label">Feeder #</label>
-                <div class="col-md-2">
+                <div class="col-md-1">
                     <input type="number" name="feederNumber" v-model="feederNumber" class="form-control" min="1" max="300" required>
                 </div>
+                <label for="Qty" class="col-md-1 col-form-label">Qty/PCB</label>
+                <div class="col-md-1">
+                    <input type="number" name="qty" v-model="qty" class="form-control" min="1" required>
+                </div>
                 <label for="Part #" class="col-md-1 col-form-label">Part #</label>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <input type="text" name="partNumber" v-model="partNumber" class="form-control" required>
                 </div>
                 <label for="Position" class="col-md-1 col-form-label">F/Position</label>
@@ -130,12 +134,12 @@
                         </form> <!-- end of form -->
                         <div class="row">
                             <div class="offset-md-2 col-md-6 ">
-                                <span class="message display-4"></span>
+                                <span class="message"></span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="offset-md-2 col-md-6">
-                                <span class="error display-4"></span>
+                                <span class="error"></span>
                             </div>
                         </div>
                     </div>
@@ -156,10 +160,11 @@
                                 <td>
                                     <strong>{{ feeder.feeder_number}}</strong> : <span class="text-danger">{{ feeder.position}}</span>
                                 </td>
+                                <td>{{ feeder.qty }}</td>
                                 <td>{{ feeder.part.own_partnumber}}</td>
                                 <td>{{ feeder.part.vendor_partnumber  }}</td>
                                 <td>{{ feeder.part.value }}</td>
-                                <td>{{ feeder.part.description }}</td>
+                                <!-- <td>{{ feeder.part.description }}</td> -->
                                 <td class="text-center">
                                     <a href="javascript:void(0)" @click="deleteFeeder(feeder.id)">
                                         <i class="fa fa-trash text-danger"></i>
@@ -187,6 +192,7 @@
                     { text: 'Rear', value: 'R' },
                 ],
                 // feederPosition: "F",
+                qty: "",
                 feederPosition: "",
                 partDescription: "",
                 partValue: "",
@@ -277,6 +283,7 @@
                         $('.machine_name').attr("disabled","disabled");
                         $('.department_name').attr("disabled","disabled");
                         this.feederSw = true;
+                        this.feederPosition = 'F';
                     }
                 })
                 .catch(error => {
@@ -292,6 +299,7 @@
                     feederNumber: this.feederNumber,
                     partNumber: this.partNumber,
                     feederPosition: this.feederPosition,
+                    qty: this.qty,
                 })
                 .then(response => {
                     //console.log(response);
@@ -305,13 +313,15 @@
                             $('#vendorPartNumber').trigger('focus');
                             });
                         })
-                    }
-                    this.errorMsg = response.data.errorMsg;
-                    this.successMsg = response.data.successMsg;
-                    if (!this.errorMsg){
-                        this.feederNumber = "";
-                        this.partNumber = "";
-                        this.getFeeders(); //display feeders
+                    } else{
+                        this.errorMsg = response.data.errorMsg;
+                        this.successMsg = response.data.successMsg;
+                        if (!this.errorMsg){
+                            this.feederNumber = "";
+                            this.partNumber = "";
+                            this.qty = "";
+                            this.getFeeders(); //display feeders
+                        }
                     }
                 })
                 .catch(error => {
@@ -330,17 +340,31 @@
                 })
                 .then(response => {
                     //console.log(response);
-                    if (response.data == "good"){
-                        $('.message').html("");//clear field
-                        $('.error').html("");//clear field
-                        $('.message').append(response.data).css('color','blue');
-                        setTimeout(() => {  $('.partModal-modal-xl').modal('hide'); }, 1000);//auto hide
+                    // if (response.data == "good"){
+                    //     $('.message').html("");//clear field
+                    //     $('.error').html("");//clear field
+                    //     $('.message').append(response.data).css('color','blue');
+                    //     setTimeout(() => {  $('.partModal-modal-xl').modal('hide'); }, 1000);//auto hide
+                    //     this.ownPartNumber = "";
+                    //     this.vendorPartNumber = "";
+                    //     this.partValue = "";
+                    //     this.partDescription = "";
+                    // }else{
+                    //     $('.error').append(response.data).css('color','red')
+                    // }
+
+                    $('.message').html("");//clear field
+                    $('.error').html("");//clear field
+
+                    if (response.data.successMsg){
+                        $('.message').append(response.data.successMsg).css('color','blue');
+                        //setTimeout(() => {  $('.partModal-modal-xl').modal('hide'); }, 1000);//auto hide
                         this.ownPartNumber = "";
                         this.vendorPartNumber = "";
                         this.partValue = "";
                         this.partDescription = "";
                     }else{
-                        $('.error').append(response.data).css('color','red')
+                        $('.error').append(response.data.errorMsg).css('color','red')
                     }
                 })
                 .catch(error => {
