@@ -3120,40 +3120,27 @@ __webpack_require__.r(__webpack_exports__);
         partValue: this.partValue,
         partDescription: this.partDescription
       }).then(function (response) {
-        //console.log(response);
-        // if (response.data == "good"){
-        //     $('.message').html("");//clear field
-        //     $('.error').html("");//clear field
-        //     $('.message').append(response.data).css('color','blue');
-        //     setTimeout(() => {  $('.partModal-modal-xl').modal('hide'); }, 1000);//auto hide
-        //     this.ownPartNumber = "";
-        //     this.vendorPartNumber = "";
-        //     this.partValue = "";
-        //     this.partDescription = "";
-        // }else{
-        //     $('.error').append(response.data).css('color','red')
-        // }
-        $('.message').html(""); //clear field
+        $('.modalMessage').html(""); //clear field
 
-        $('.error').html(""); //clear field
+        $('.modalError').html(""); //clear field
 
         if (response.data.successMsg) {
-          $('.message').append(response.data.successMsg).css('color', 'blue'); //setTimeout(() => {  $('.partModal-modal-xl').modal('hide'); }, 1000);//auto hide
+          $('.modalMessage').append(response.data.successMsg).css('color', 'blue'); //setTimeout(() => {  $('.partModal-modal-xl').modal('hide'); }, 1000);//auto hide
 
           _this5.ownPartNumber = "";
           _this5.vendorPartNumber = "";
           _this5.partValue = "";
           _this5.partDescription = "";
         } else {
-          $('.error').append(response.data.errorMsg).css('color', 'red');
+          $('.modalError').append(response.data.errorMsg).css('color', 'red');
         }
       })["catch"](function (error) {
         //console.log(error);
-        $('.error').html(""); //clear field
+        $('.modalError').html(""); //clear field
 
-        $('.message').html(""); //clear field
+        $('.modalMessage').html(""); //clear field
 
-        $('.error').append(error).css('color', 'red'); // console.log(error.response)
+        $('.modalError').append(error).css('color', 'red'); // console.log(error.response)
         // console.log(error.response.status);
       });
     }
@@ -3166,8 +3153,7 @@ __webpack_require__.r(__webpack_exports__);
       //console.log(response);
       //get 3 objects from ProductController
       _this6.justProductNames = response.data.justProductNames;
-      _this6.justMachines = response.data.justMachines; //this.justDepartments = response.data.justDepartments[0];//매우 중요[0]사용.
-
+      _this6.justMachines = response.data.justMachines;
       _this6.justDepartments = response.data.justDepartments;
     })["catch"](function (error) {//console.log(error);
     });
@@ -58779,7 +58765,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "offset-md-2 col-md-6 " }, [
-        _c("span", { staticClass: "message" })
+        _c("span", { staticClass: "modalMessage" })
       ])
     ])
   },
@@ -58789,7 +58775,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "offset-md-2 col-md-6" }, [
-        _c("span", { staticClass: "error" })
+        _c("span", { staticClass: "modalError" })
       ])
     ])
   },
@@ -59642,7 +59628,7 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "show_parts col-md-10 offset-md-1" }, [
+      _c("div", { staticClass: "show_parts col-md-12" }, [
         _c("div", { staticClass: "table-responsive mt-3" }, [
           _c("table", { staticClass: "table table-striped table-bordered" }, [
             _c(

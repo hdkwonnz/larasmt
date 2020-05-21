@@ -60,7 +60,7 @@
 
         <!-- display existing parts -->
         <div class="row">
-            <div class="show_parts col-md-10 offset-md-1">
+            <div class="show_parts col-md-12">
                 <div class="table-responsive mt-3">
                     <table class="table table-striped table-bordered">
                         <tbody>

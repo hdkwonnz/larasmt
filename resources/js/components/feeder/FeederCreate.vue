@@ -134,12 +134,12 @@
                         </form> <!-- end of form -->
                         <div class="row">
                             <div class="offset-md-2 col-md-6 ">
-                                <span class="message"></span>
+                                <span class="modalMessage"></span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="offset-md-2 col-md-6">
-                                <span class="error"></span>
+                                <span class="modalError"></span>
                             </div>
                         </div>
                     </div>
@@ -339,39 +339,24 @@
                     partDescription: this.partDescription
                 })
                 .then(response => {
-                    //console.log(response);
-                    // if (response.data == "good"){
-                    //     $('.message').html("");//clear field
-                    //     $('.error').html("");//clear field
-                    //     $('.message').append(response.data).css('color','blue');
-                    //     setTimeout(() => {  $('.partModal-modal-xl').modal('hide'); }, 1000);//auto hide
-                    //     this.ownPartNumber = "";
-                    //     this.vendorPartNumber = "";
-                    //     this.partValue = "";
-                    //     this.partDescription = "";
-                    // }else{
-                    //     $('.error').append(response.data).css('color','red')
-                    // }
-
-                    $('.message').html("");//clear field
-                    $('.error').html("");//clear field
-
+                    $('.modalMessage').html("");//clear field
+                    $('.modalError').html("");//clear field
                     if (response.data.successMsg){
-                        $('.message').append(response.data.successMsg).css('color','blue');
+                        $('.modalMessage').append(response.data.successMsg).css('color','blue');
                         //setTimeout(() => {  $('.partModal-modal-xl').modal('hide'); }, 1000);//auto hide
                         this.ownPartNumber = "";
                         this.vendorPartNumber = "";
                         this.partValue = "";
                         this.partDescription = "";
                     }else{
-                        $('.error').append(response.data.errorMsg).css('color','red')
+                        $('.modalError').append(response.data.errorMsg).css('color','red')
                     }
                 })
                 .catch(error => {
                     //console.log(error);
-                    $('.error').html("");//clear field
-                    $('.message').html("");//clear field
-                    $('.error').append(error).css('color','red');
+                    $('.modalError').html("");//clear field
+                    $('.modalMessage').html("");//clear field
+                    $('.modalError').append(error).css('color','red');
                     // console.log(error.response)
                     // console.log(error.response.status);
                 });
@@ -387,7 +372,6 @@
                 //get 3 objects from ProductController
                 this.justProductNames = response.data.justProductNames;
                 this.justMachines = response.data.justMachines;
-                //this.justDepartments = response.data.justDepartments[0];//매우 중요[0]사용.
                 this.justDepartments = response.data.justDepartments;
             })
             .catch(error => {
