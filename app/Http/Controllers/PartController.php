@@ -283,7 +283,7 @@ class PartController extends Controller
             'scanned_result' => $scannedResult,
             'scanned_type' => $request->scannedType,
             // 'scanned_time' => \Carbon\Carbon::now()->format('H:i:s'),//24 hour format,////???
-            'scanned_time' => date('H:i:s'),//24 hour format,////???
+            // 'scanned_time' => date('H:i:s'),//24 hour format,////???
             'order_number' => $orderFeeder->order_number,
             'machine_id' => $orderFeeder->machine_id,
             'machine_name' => $orderFeeder->machine_name,

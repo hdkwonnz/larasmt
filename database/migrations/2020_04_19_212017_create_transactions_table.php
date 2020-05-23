@@ -17,9 +17,10 @@ class CreateTransactionsTable extends Migration
             $table->id();
             $table->string('scanned_result');
             $table->string('scanned_type')->nullable();
-            $table->string('scanned_time');
+            // $table->string('scanned_time');
             $table->unsignedBigInteger('order_id');
-            $table->unsignedBigInteger('order_number');
+            $table->string('order_number');
+            // $table->index('order_number');
             $table->unsignedBigInteger('machine_id');
             $table->string('machine_name');
             $table->string('product_name');
