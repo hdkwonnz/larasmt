@@ -77,6 +77,7 @@
         </div>
         @endforeach
     @endforeach
+    <span>>>> end of page <<<</span>
 
     <!-- Modal -->
     <!-- to protect right click on mouse => oncontextmenu="return false;" -->

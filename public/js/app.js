@@ -59977,14 +59977,18 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "row mt-3" }, [
-      _c("div", { staticClass: "show_users col-md-10" }, [
+      _c("div", { staticClass: "show_users col-md-11" }, [
         _c("div", { staticClass: "table-responsive mt-3" }, [
           _c("table", { staticClass: "table table-striped table-bordered" }, [
             _c(
               "tbody",
               _vm._l(_vm.users, function(user) {
                 return _c("tr", { key: user.index }, [
-                  _c("td", [_c("strong", [_vm._v(_vm._s(user.name))])]),
+                  _c("td", [
+                    _c("strong", [
+                      _vm._v(_vm._s(user.name) + "(" + _vm._s(user.id) + ")")
+                    ])
+                  ]),
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(user.email))]),
                   _vm._v(" "),

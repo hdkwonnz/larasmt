@@ -26,12 +26,12 @@
 
         <!-- display existing parts -->
         <div class="row mt-3">
-            <div class="show_users col-md-10">
+            <div class="show_users col-md-11">
                 <div class="table-responsive mt-3">
                     <table class="table table-striped table-bordered">
                         <tbody>
                             <tr v-for="user in users" :key="user.index" >
-                                <td><strong>{{ user.name}}</strong></td>
+                                <td><strong>{{ user.name}}({{ user.id }})</strong></td>
                                 <td>{{ user.email  }}</td>
                                 <td>{{ user.role }}</td>
                                 <td>{{ user.email_verified_at | myDate }}</td>

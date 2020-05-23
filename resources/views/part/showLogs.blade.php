@@ -70,12 +70,13 @@
                         {{-- <td>{{ $transaction->created_at }}</td> --}}
                         <td>{{ \Carbon\Carbon::parse($transaction->created_at)->format('H:i:s d-m-Y') }}</td>
                         <td>{{ $transaction->scanned_type }}</td>
-                        <td>{{ $transaction->author }}</td>
+                        <td>{{ $transaction->author }}({{ $transaction->user_id }})</td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
         </div> <!-- end table-responsive -->
+        <span>>>> end of page <<<</span>
     </div>
 </div> <!-- end container -->
 

@@ -60,6 +60,7 @@
         </div>
         @endforeach
     @endforeach
+    <span>>>> end of page <<<</span>
 
     <!-- this row will not appear when printing -->
     <!-- printme function is defined on resources/js/app.js-->
