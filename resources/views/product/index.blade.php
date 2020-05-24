@@ -2,10 +2,16 @@
 
 @section('content')
 
-{{-- <link href="/myCss/wholeReading.css" rel="stylesheet"> --}}
+<link href="/myCss/wholeReading.css" rel="stylesheet">
 
 <div class="container mt-5">
-
+    <!-- this row will not appear when printing -->
+    <!-- printme function is defined on resources/js/app.js-->
+    <div class="row mt-3 no-print">
+        <div class="col-xs-12">
+          <a href="#" @click.prevent="printme" target="_blank" class="btn btn-primary"><i class="fa fa-print"></i> Print</a>
+        </div>
+    </div>
     <div class="row bg-success pt-2 top_menu">
         <div class="col-md-3">
             <h2 class="">
@@ -61,15 +67,6 @@
         @endforeach
     @endforeach
     <span>>>> end of page <<<</span>
-
-    <!-- this row will not appear when printing -->
-    <!-- printme function is defined on resources/js/app.js-->
-    <div class="row mt-3 no-print">
-        <div class="col-xs-12">
-          <a href="#" @click.prevent="printme" target="_blank" class="btn btn-success"><i class="fa fa-print"></i> Print</a>
-          </button>
-        </div>
-    </div>
 </div>
 
 @endsection

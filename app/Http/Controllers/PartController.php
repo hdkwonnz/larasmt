@@ -156,8 +156,12 @@ class PartController extends Controller
 
     public function selectLogsForm()
     {
-        $orders = Order::where('status','=','active')
+        if (\Auth::check() && auth()->user()->role == 'editor'){
+            $orders = Order::all();
+        }else{
+            $orders = Order::where('status','=','active')
             ->get();
+        }
 
         $count = $orders->count();
 

@@ -6,7 +6,15 @@
 <link href="/myCss/productIndex.css" rel="stylesheet">
 
 <div class="container mt-5">
-
+    @can('isEditor')
+    <!-- this row will not appear when printing -->
+    <!-- printme function is defined on resources/js/app.js-->
+    <div class="row mt-3 no-print">
+        <div class="col-xs-12">
+            <a href="#" @click.prevent="printme" target="_blank" class="btn btn-primary"><i class="fa fa-print"></i> Print</a>
+        </div>
+    </div>
+    @endCan
     <div class="row bg-success pt-2 top_menu">
         <div class="col-md-3">
             <h2 class="">
