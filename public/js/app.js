@@ -4090,25 +4090,36 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         //console.log(response);
-        _this2.orderFeeder = response.data.orderFeeder;
-        _this2.feederId = _this2.orderFeeder.id;
-        _this2.previous = response.data.previous;
+        _this2.errorMsg = "";
+        _this2.successMsg = "";
 
-        if (_this2.previous) {
-          _this2.previousId = _this2.previous.id;
-          _this2.previousOrderNumber = _this2.previous.order_number;
+        if (response.data.errorMsg) {
+          _this2.errorMsg = response.data.errorMsg;
+        } else {
+          _this2.orderFeeder = response.data.orderFeeder;
+          _this2.feederId = _this2.orderFeeder.id;
+          _this2.previous = response.data.previous;
+
+          if (_this2.previous) {
+            _this2.previousId = _this2.previous.id;
+            _this2.previousOrderNumber = _this2.previous.order_number;
+          }
+
+          _this2.next = response.data.next;
+
+          if (_this2.next) {
+            _this2.nextId = _this2.next.id;
+            _this2.nextOrderNumber = _this2.next.order_number;
+          }
+
+          _this2.hideSelectSw = false;
+          _this2.showWholeReadingSw = true;
         }
-
-        _this2.next = response.data.next;
-
-        if (_this2.next) {
-          _this2.nextId = _this2.next.id;
-          _this2.nextOrderNumber = _this2.next.order_number;
-        }
-
-        _this2.hideSelectSw = false;
-        _this2.showWholeReadingSw = true;
-      })["catch"](function (error) {//console.log(error);
+      })["catch"](function (error) {
+        //console.log(error);
+        _this2.errorMsg = "";
+        _this2.successMsg = "";
+        _this2.errorMsg = error;
       });
     },
     currentReading: function currentReading() {

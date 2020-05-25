@@ -245,23 +245,32 @@
                 })
                 .then(response => {
                     //console.log(response);
-                    this.orderFeeder = response.data.orderFeeder;
-                    this.feederId = this.orderFeeder.id;
-                    this.previous = response.data.previous;
-                    if (this.previous){
-                        this.previousId = this.previous.id;
-                        this.previousOrderNumber = this.previous.order_number;
+                    this.errorMsg = "";
+                    this.successMsg = "";
+                    if (response.data.errorMsg){
+                        this.errorMsg = response.data.errorMsg;
+                    }else{
+                        this.orderFeeder = response.data.orderFeeder;
+                        this.feederId = this.orderFeeder.id;
+                        this.previous = response.data.previous;
+                        if (this.previous){
+                            this.previousId = this.previous.id;
+                            this.previousOrderNumber = this.previous.order_number;
+                        }
+                        this.next = response.data.next;
+                        if (this.next){
+                            this.nextId = this.next.id;
+                            this.nextOrderNumber = this.next.order_number;
+                        }
+                        this.hideSelectSw = false;
+                        this.showWholeReadingSw = true;
                     }
-                    this.next = response.data.next;
-                    if (this.next){
-                        this.nextId = this.next.id;
-                        this.nextOrderNumber = this.next.order_number;
-                    }
-                    this.hideSelectSw = false;
-                    this.showWholeReadingSw = true;
                 })
                 .catch(error => {
                     //console.log(error);
+                    this.errorMsg = "";
+                    this.successMsg = "";
+                    this.errorMsg = error;
                 })
             },
 
