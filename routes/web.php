@@ -59,6 +59,7 @@ Route::get('/create-part', 'PartController@createPartForm')->name('create.partFo
 Route::get('/get-parts', 'PartController@getParts')->middleware('can:isAdmin');
 Route::post('/delete-part', 'PartController@deletePart')->middleware('can:isAdmin');
 Route::get('/partProductForm','PartController@partProductForm')->name('part.partProductForm');
+Route::get('/part/getOrders','PartController@getOrders')->middleware('auth','verified');
 Route::post('/partProduct','PartController@partProduct');
 // Order
 Route::get('/make-order', 'OrderController@showForm')->name('form.order')->middleware('can:isEditor','password.confirm');

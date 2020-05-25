@@ -195,12 +195,21 @@ class PartController extends Controller
 
     public function wholeReading()
     {
+        //return ($_GET['orderNumber']);
+        // if ((isset($_GET['orderId'])) && (isset($_GET['orderNumber']))){
+        //     return ($_GET['orderNumber'] . "**" . $_GET['orderId']);
+        // }else{
+        //     return ($_GET['orderNumber']);
+        // }
+
         if ((isset($_GET['orderNumber'])) && !(isset($_GET['orderId']))){
             $orderNumber = $_GET['orderNumber'];
             $orderFeeder = Orderfeeder::where('order_number', '=',$orderNumber)
                             ->first();
             if (!$orderFeeder){
-                return back()->with('error','sorry! no order-feeder list at this point.');
+                return response()->json([
+                    'errorMsg' => 'sorry! no order-feeder list at this point.'
+                ]);
             }
         }
 
@@ -211,7 +220,9 @@ class PartController extends Controller
                             ->where('order_number', '=',$orderNumber)
                             ->first();
             if (!$orderFeeder){
-                return back()->with('error','sorry! no order-feeder list at this point.');
+                return response()->json([
+                    'errorMsg' => 'sorry! no order-feeder list at this point.'
+                ]);
             }
         }
 
@@ -223,17 +234,70 @@ class PartController extends Controller
                     ->where('order_number', '=',$orderNumber)
                     ->orderBy('id')->first();
 
-        return view('part.wholeReading',compact('orderFeeder','previous','next'));
+        return response()->json([
+            'orderFeeder' => $orderFeeder,
+            'previous' => $previous,
+            'next' => $next,
+        ]);
     }
+
+    // public function wholeReading()
+    // {
+    //     if ((isset($_GET['orderNumber'])) && !(isset($_GET['orderId']))){
+    //         $orderNumber = $_GET['orderNumber'];
+    //         $orderFeeder = Orderfeeder::where('order_number', '=',$orderNumber)
+    //                         ->first();
+    //         if (!$orderFeeder){
+    //             return back()->with('error','sorry! no order-feeder list at this point.');
+    //         }
+    //     }
+
+    //     if ((isset($_GET['orderId'])) && (isset($_GET['orderNumber']))){
+    //         $orderId = $_GET['orderId'];
+    //         $orderNumber = $_GET['orderNumber'];
+    //         $orderFeeder = Orderfeeder::where('id', '=',$orderId)
+    //                         ->where('order_number', '=',$orderNumber)
+    //                         ->first();
+    //         if (!$orderFeeder){
+    //             return back()->with('error','sorry! no order-feeder list at this point.');
+    //         }
+    //     }
+
+    //     $previous = Orderfeeder::where('id', '<', $orderFeeder->id)
+    //                     ->where('order_number', '=',$orderNumber)
+    //                     ->orderBy('id','desc')->first();
+
+    //     $next = Orderfeeder::where('id', '>', $orderFeeder->id)
+    //                 ->where('order_number', '=',$orderNumber)
+    //                 ->orderBy('id')->first();
+
+    //     return view('part.wholeReading',compact('orderFeeder','previous','next'));
+    // }
 
     public function showReadingForm()
     {
-        //return date('d/m/Y H:i:s');
 
+        return view('part.showReadingForm');
+    }
+
+    // public function showReadingForm()
+    // {
+    //     //return date('d/m/Y H:i:s');
+
+    //     $orders = Order::where('status','=','active')
+    //         ->get();
+
+    //     return view('part.showReadingForm',compact('orders'));
+    // }
+
+    public function getOrders()
+    {
         $orders = Order::where('status','=','active')
-            ->get();
+                    ->get();
 
-        return view('part.showReadingForm',compact('orders'));
+        return response()->json([
+            'orders' => $orders,
+        ]);
     }
 
     public function showRefill($feederId)

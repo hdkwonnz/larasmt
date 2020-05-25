@@ -2,54 +2,15 @@
 
 @section('content')
 
+<link href="/myCss/productIndex.css" rel="stylesheet">
+<link href="/myCss/wholeReading.css" rel="stylesheet">
+
 <div class="container mt-5">
-    <div class="row">
-        <div class="col-md-8 offset-md-2">
-            <div class="">
-                <h4>Check All Parts</h4>
-            </div>
-        </div>
-    </div>
-    <form method="GET" action="{{ route('part.wholeReading')}}" class="mt-4">
-            @csrf
-            <div class="form-group row">
-                <label for="orderNmber" class="col-md-2 col-form-label">Order Numbers</label>
-                <div class="col-md-6">
-                    <select name="orderNumber" id="orderNumber" required class="form-control dropdown-style input-field input-normal">
-                        @foreach ($orders as $order)
-                            <option value="{{ $order->order_number}}" >{{ $order->order_number }} - {{ $order->product_name }} - {{ $order->department_name }} - {{ $order->shift_name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-
-            <div class="form-group row mt-5">
-                <div class="col-md-6 offset-md-2">
-                    <button type="submit" class="btn btn-primary w-100">
-                        Click
-                    </button>
-                </div>
-            </div>
-        </form>
-
-    <div class="row">
-        <div class="col-md-6 offset-md-2">
-            @if (session('error'))
-            <div class="alert alert-danger">
-                {{ session('error') }}
-            </div>
-            @endif
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6 offset-md-2">
-            @if (session('message'))
-            <div class="alert alert-success">
-                {{ session('message') }}
-            </div>
-            @endif
-        </div>
-    </div>
+    <whole-reading user_email="{{ auth()->user()->email }}" user_name="{{ auth()->user()->name }}"></whole-reading>
 </div>
+
+@endsection
+
+@section('extra-js')
 
 @endsection
