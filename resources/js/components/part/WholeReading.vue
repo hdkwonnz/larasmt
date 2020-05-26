@@ -235,7 +235,9 @@
 
             initialReading(){
                 if (!this.orderNumber){
-                    alert("please, select order number.");
+                    this.errorMsg = "";
+                    this.successMsg = "";
+                    this.errorMsg = "Please, select order number."
                     return;
                 }
                 axios.get('/wholeReading', {

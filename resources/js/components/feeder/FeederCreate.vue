@@ -261,7 +261,9 @@
 
             checkFeeder(){
                 if (this.productNameId == "" || this.machineId == "" || this.departmentId == ""){
-                    alert("Please Select Items.")
+                    this.successMsg = "";
+                    this.errorMsg = "";
+                    this.errorMsg = "Please, select proper item(s)."
                     return;
                 }
                 axios.post('/check-feeder',

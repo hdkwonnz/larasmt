@@ -282,7 +282,9 @@
 
             createOrder(){
                 if (this.productNameId == "" || this.departmentId == "" || this.shiftId == ""){
-                    alert("Please select proper item(s).");
+                    this.successMsg = "";
+                    this.errorMsg = "";
+                    this.errorMsg = "Please, select proper item(s).";
                     return;
                 }
                 axios.post('/make-order',

@@ -117,7 +117,9 @@
 
             createProduct(){
                 if (this.productNameId == "" || this.machineId == "" || this.departmentId == ""){
-                    alert("Please select proper item(s).")
+                    this.errorMsg = "";
+                    this.successMsg = "";
+                    this.errorMsg = "Please, select proper item(s)."
                     return;
                 }
                 axios.post('/create-product',

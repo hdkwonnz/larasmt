@@ -51,7 +51,7 @@ Route::post('/delete-feeder', 'ProductController@deleteFeeder')->name('delete.fe
 // Route::get('/refill/{feeder}', 'PartController@showRefill')->name('part.refill');//not use
 Route::post('/refill', 'PartController@updateRefill')->name('refill.update')->middleware('auth','verified');
 Route::get('/wholeReading','PartController@wholeReading')->name('part.wholeReading')->middleware('auth','verified');
-Route::get('/showReadingForm','PartController@showReadingForm')->name('part.showReadingForm');
+Route::get('/showReadingForm','PartController@showReadingForm')->name('part.showReadingForm')->middleware('auth','verified');
 Route::get('/selectLogsForm','PartController@selectLogsForm')->name('part.selectLogsForm');
 Route::post('/selectLogsForm','PartController@showLogs')->name('part.showLogs');
 Route::post('/create-part', 'PartController@createPart')->name('create.part')->middleware('can:isAdmin');

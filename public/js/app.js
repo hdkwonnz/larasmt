@@ -2371,7 +2371,9 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       if (this.productNameId == "" || this.machineId == "" || this.departmentId == "") {
-        alert("Please select proper item(s).");
+        this.errorMsg = "";
+        this.successMsg = "";
+        this.errorMsg = "Please, select proper item(s).";
         return;
       }
 
@@ -3039,7 +3041,9 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       if (this.productNameId == "" || this.machineId == "" || this.departmentId == "") {
-        alert("Please Select Items.");
+        this.successMsg = "";
+        this.errorMsg = "";
+        this.errorMsg = "Please, select proper item(s).";
         return;
       }
 
@@ -3461,7 +3465,9 @@ __webpack_require__.r(__webpack_exports__);
       var _this4 = this;
 
       if (this.productNameId == "" || this.departmentId == "" || this.shiftId == "") {
-        alert("Please select proper item(s).");
+        this.successMsg = "";
+        this.errorMsg = "";
+        this.errorMsg = "Please, select proper item(s).";
         return;
       }
 
@@ -4080,7 +4086,9 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       if (!this.orderNumber) {
-        alert("please, select order number.");
+        this.errorMsg = "";
+        this.successMsg = "";
+        this.errorMsg = "Please, select order number.";
         return;
       }
 
