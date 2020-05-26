@@ -60549,18 +60549,20 @@ var render = function() {
                 _c("div", { staticClass: "alert alert-light" }, [
                   _vm._m(5),
                   _vm._v(" "),
-                  _c("div", { staticClass: "text-center mt-3" }, [
-                    _c("span", { staticClass: "machine_name display-4" }, [
+                  _c("div", { staticClass: "mt-3" }, [
+                    _c("h1", { staticClass: "machine_name" }, [
                       _vm._v(_vm._s(_vm.orderFeeder.machine_name))
                     ])
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "display-4 text-center" }, [
-                    _c("span", {}, [
+                    _c("span", { staticClass: "bg-dark text-white" }, [
                       _vm._v(_vm._s(_vm.orderFeeder.feeder_number))
                     ]),
                     _vm._v(" "),
-                    _c("span", [_vm._v(_vm._s(_vm.orderFeeder.position))])
+                    _c("span", { staticClass: "bg-dark text-white" }, [
+                      _vm._v(_vm._s(_vm.orderFeeder.position))
+                    ])
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group row" }, [

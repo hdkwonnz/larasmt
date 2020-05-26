@@ -112,12 +112,12 @@
                         <div class="text-center bg-dark text-white">
                             <span class="">Current #</span>
                         </div>
-                        <div class="text-center mt-3">
-                            <span class="machine_name display-4">{{ orderFeeder.machine_name }}</span>
+                        <div class="mt-3">
+                            <h1 class="machine_name">{{ orderFeeder.machine_name }}</h1>
                         </div>
                         <div class="display-4 text-center">
-                            <span class="">{{ orderFeeder.feeder_number }}</span>
-                            <span>{{ orderFeeder.position }}</span>
+                            <span class="bg-dark text-white">{{ orderFeeder.feeder_number }}</span>
+                            <span class="bg-dark text-white">{{ orderFeeder.position }}</span>
                         </div>
                         <div class="form-group row">
                             <label for="ownPartNumber" class="col-md-2 col-form-label">Part Number</label>
