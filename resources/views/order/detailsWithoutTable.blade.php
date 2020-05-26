@@ -51,45 +51,39 @@
             </div>
         </div>
     </div>
-    @php
-        $orderFeeders = App\Orderfeeder::where('order_number','=',$orderMerchine->order_number)
-            ->where('machine_id','=',$orderMerchine->machine_id)
-            ->orderBy('feeder_number','asc')
-            ->get();
-    @endphp
-
-    <!-- table -->
-    <div class="row">
-        <div class="table-responsive mt-1">
-            <table class="table table-striped table-bordered">
-                <tbody>
-                    @foreach ($orderFeeders as $feeder)
-                    <tr style="width: 15%">
-                        <td>
-                            <button type="button" class="btn btn-sm btn-primary"
-                                onclick="doRefill({{ $feeder->id }},{{ $feeder->feeder_number }},'{{ $feeder->position }}','{{ $orderMerchine->machine_name }}','{{ $feeder->own_partnumber }}')">
-                                {{ $feeder->feeder_number }}
-                            </button>
-                            <span class="text-danger">{{ $feeder->position }}</span>
-                        </td>
-                        <td style="width: 10%" class="text-right">
-                            {{ $feeder->qty }}
-                        </td>
-                        <td style="width: 25%">
-                            {{ $feeder->own_partnumber }}
-                        </td>
-                        <td style="width: 25%">
-                            {{ $feeder->vendor_partnumber }}
-                        </td>
-                        <td style="width: 25%">
-                            {{ $feeder->value }}
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+        @php
+            $orderFeeders = App\Orderfeeder::where('order_number','=',$orderMerchine->order_number)
+                ->where('machine_id','=',$orderMerchine->machine_id)
+                ->orderBy('feeder_number','asc')
+                ->get();
+        @endphp
+        @foreach ($orderFeeders as $feeder)
+        <div class="row">
+            <!-- transfer data to modal by jquery=> call doRefill-->
+            <div class="col-md-2 w-100">
+                <button type="button" class="btn btn-primary"
+                    onclick="doRefill({{ $feeder->id }},{{ $feeder->feeder_number }},'{{ $feeder->position }}','{{ $orderMerchine->machine_name }}','{{ $feeder->own_partnumber }}')">
+                    {{ $feeder->feeder_number }}
+                </button>
+                <span class="text-danger">{{ $feeder->position }}</span>
+            </div>
+            <div class="col-md-1 text-right">
+                {{ $feeder->qty }}
+            </div>
+            <div class="col-md-3">
+                {{ $feeder->own_partnumber }}
+            </div>
+            <div class="col-md-3">
+                {{ $feeder->vendor_partnumber }}
+            </div>
+            <div class="col-md-3">
+                {{ $feeder->value }}
+            </div>
+            {{-- <div class="col-md-1">
+                {{ $feeder->description }}
+            </div> --}}
         </div>
-    </div><!-- end of table -->
+        @endforeach
     @endforeach
     <span>>>> end of page <<<</span>
 
@@ -109,14 +103,16 @@
 
                 <div class="modal-body offset-md-2 col-md-10">
                     <div class="form-group row">
-                        <div class="col-md-12">
+                        <label for="Feeder" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-6">
                             <span class="machine_name display-4"></span>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <div class="offset-md-2 col-md-10">
-                            <span class="feeder_number display-4 bg-dark text-white"></span>
-                            <span class="feeder_position display-4 bg-dark text-white"></span>
+                        <label for="Feeder" class="col-md-2 col-form-label"></label>
+                        <div class="offset-md-2 col-md-6">
+                            <span class="feeder_number display-4"></span>
+                            <span class="feeder_position display-4"></span>
                         </div>
                     </div>
                     <div class="form-group row">
