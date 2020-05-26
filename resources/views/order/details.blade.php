@@ -45,17 +45,17 @@
 
     @foreach ($orderMerchines as $orderMerchine)
     <div class="row mt-3">
-        <div class="col-md-3">
+        <div class="col-md-5">
             <div>
                 <h3 class="bg-warning">{{ $orderMerchine->machine_name }}</h4>
             </div>
         </div>
     </div>
     @php
-        $orderFeeders = App\Orderfeeder::where('order_number','=',$orderMerchine->order_number)
-            ->where('machine_id','=',$orderMerchine->machine_id)
-            ->orderBy('feeder_number','asc')
-            ->get();
+    $orderFeeders = App\Orderfeeder::where('order_number','=',$orderMerchine->order_number)
+        ->where('machine_id','=',$orderMerchine->machine_id)
+        ->orderBy('feeder_number','asc')
+        ->get();
     @endphp
 
     <!-- table -->

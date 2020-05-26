@@ -27,20 +27,20 @@
 
     @foreach ($products as $product)
     <div class="row mt-3">
-        <div class="col-md-3">
+        <div class="col-md-5">
             <div>
                 <h3 class="bg-warning">{{ $product->machine->name }}</h3>
             </div>
         </div>
     </div>
-        @php
-        $feeders = App\Feeder::with('part')
-                    ->where('product_id','=',$product->id)
-                    ->orderBy('feeder_number', 'asc')
-                    ->get();
-        @endphp
+    @php
+    $feeders = App\Feeder::with('part')
+                ->where('product_id','=',$product->id)
+                ->orderBy('feeder_number', 'asc')
+                ->get();
+    @endphp
 
-         <!-- table -->
+    <!-- table -->
     <div class="row">
         <div class="table-responsive mt-1">
             <table class="table table-striped table-bordered">
@@ -70,6 +70,7 @@
         </div>
     </div><!-- end of table -->
     @endforeach
+
     <span>>>> end of page <<<</span>
 </div>
 
