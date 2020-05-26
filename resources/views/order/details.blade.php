@@ -110,7 +110,7 @@
                 <div class="modal-body offset-md-2 col-md-10">
                     <div class="form-group row">
                         <div class="col-md-12">
-                            <span class="machine_name display-4"></span>
+                            <h1 class="machine_name"></h1>
                         </div>
                     </div>
                     <div class="form-group row">
