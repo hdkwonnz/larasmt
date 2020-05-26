@@ -29,7 +29,7 @@
     <div class="row mt-3">
         <div class="col-md-3">
             <div>
-                <h3 class="bg-warning">{{ $product->machine->name }}</h3>
+                <h4>{{ $product->machine->name }}</h4>
             </div>
         </div>
     </div>
@@ -40,35 +40,31 @@
                     ->get();
         @endphp
 
-         <!-- table -->
-    <div class="row">
-        <div class="table-responsive mt-1">
-            <table class="table table-striped table-bordered">
-                <tbody>
-                    @foreach ($feeders as $feeder)
-                    <tr style="width: 15%">
-                        <td>
-                            {{ $feeder->feeder_number }}
-                            <span class="text-danger">{{ $feeder->position }}</span>
-                        </td>
-                        <td style="width: 10%" class="text-right">
-                            {{ $feeder->qty }}
-                        </td>
-                        <td style="width: 25%">
-                            {{ $feeder->part->own_partnumber }}
-                        </td>
-                        <td style="width: 25%">
-                            {{ $feeder->part->vendor_partnumber }}
-                        </td>
-                        <td style="width: 25%">
-                            {{ $feeder->part->value }}
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+        @foreach ($feeders as $feeder)
+        <div class="row">
+            <div class="col-md-1 w-100">
+                {{-- <a href="{{ route('part.refill', $feeder) }}" class="btn btn-primary">{{ $feeder->feeder_number }}</a> --}}
+                {{-- <span class="btn btn-primary">{{ $feeder->feeder_number }}</span> --}}
+                <span class="display-5"><strong>{{ $feeder->feeder_number }}</strong></span>
+            <span class="text-danger">:{{ $feeder->position }}</span>
+            </div>
+            <div class="col-md-1 text-right">
+                {{ $feeder->qty }}
+            </div>
+            <div class="col-md-3">
+                {{ $feeder->part->own_partnumber }}
+            </div>
+            <div class="col-md-3">
+                {{ $feeder->part->vendor_partnumber }}
+            </div>
+            {{-- <div class="col-md-3">
+                {{ $feeder->part->description }}
+            </div> --}}
+            <div class="col-md-2">
+                {{ $feeder->part->value }}
+            </div>
         </div>
-    </div><!-- end of table -->
+        @endforeach
     @endforeach
     <span>>>> end of page <<<</span>
 </div>
