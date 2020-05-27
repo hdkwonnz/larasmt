@@ -46,7 +46,7 @@
     <!-- table -->
     <div class="row">
         <div class="table-responsive mt-3">
-            <table class="table table-striped table-bordered">
+            <table class="table table-striped table-bordered table-sm">
                 <thead>
                     <tr>
                         <th>F/N</th>

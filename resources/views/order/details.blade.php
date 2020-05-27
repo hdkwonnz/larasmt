@@ -61,7 +61,7 @@
     <!-- table -->
     <div class="row">
         <div class="table-responsive mt-1">
-            <table class="table table-striped table-bordered">
+            <table class="table table-striped table-bordered table-sm">
                 <tbody>
                     @foreach ($orderFeeders as $feeder)
                     <tr style="width: 15%">
